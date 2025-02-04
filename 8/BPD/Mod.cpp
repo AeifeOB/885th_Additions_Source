@@ -1,0 +1,10 @@
+name = "885th Bloodpack Division Additions";
+author = "AifeSupport";
+logo = "files\icon.paa";
+logoOver = "files\icon.paa";
+tooltipOwned = "885th Experimental Additions Mod.";
+picture = "";
+overview = "885th Experimental Additions, such as the scanner HUD.";
+hideName = 0;
+hidePicture = 1;
+logoSmall = "files\iconSmall.paa";
