@@ -1,6 +1,8 @@
-#include "\a3\ui_f\hpp\defineDIKCodes.inc"
+#define PREFIX BPD
+#define COMPONENT Scanner
 #include "\x\cba\addons\main\script_macros_common.hpp"
-#define 
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
+
 // #define DEBUG_MODE_FULL
 // #define DISABLE_COMPILE_CACHE
 

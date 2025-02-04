@@ -1,12 +1,15 @@
+#include "script_component.hpp"
 class CfgPatches
 {
-	class 885_Scanner
+	class Scanner
 	{
-		requiredAddons[] = {"CBA_A3", "zen_custom_modules"};
+		name = "Scanner";
+		author = "AifeSupport";
+		url = "https://github.com/AeifeOB/885th_Additions_Source";
+		requiredAddons[] = {"CBA_main", "zen_custom_modules"};
 		requiredVersion = 1.62;
 		units[] ={};
 		weapons[] = {};
-		author = "AifeSupport";
 	};
 };
 
@@ -24,3 +27,4 @@ class CfgFunctions
 		};
 	};
 };
+#include "CfgEventhandlers.hpp"
