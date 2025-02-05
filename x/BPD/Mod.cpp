@@ -1,0 +1,10 @@
+name = "Aife's Additions";
+author = "AifeSupport";
+logo = "files\icon.paa";
+logoOver = "files\icon.paa";
+tooltipOwned = "Experimental Additions Mod.";
+picture = "";
+overview = "Experimental Additions, such as the scanner HUD and vehicle spawner.";
+hideName = 0;
+hidePicture = 1;
+logoSmall = "files\iconSmall.paa";
