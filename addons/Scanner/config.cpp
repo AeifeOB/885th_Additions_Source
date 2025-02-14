@@ -21,28 +21,34 @@ class CfgFunctions
 		class ScannerHUD {
 			class Start
 			{
-				file="\885th_Additions_Source\x\BPD\addons\Scanner\functions\fnc_Start.sqf";
+				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Start.sqf";
 				recompile = 1;
+				postInit = 1;
 			};
 			class Scan
 			{
-				file="\885th_Additions_Source\x\BPD\addons\Scanner\functions\fnc_Scan.sqf";
+				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Scan.sqf";
 				recompile = 1;
 			};
 			class CreateTarget
 			{
-				file="\885th_Additions_Source\x\BPD\addons\Scanner\functions\fnc_CreateTarget.sqf";
+				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_CreateTarget.sqf";
 				recompile = 1;
 			};
 			class RemoveTarget
 			{
-				file="\885th_Additions_Source\x\BPD\addons\Scanner\functions\fnc_RemoveTarget.sqf";
+				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_RemoveTarget.sqf";
 				recompile = 1;
 			};
 			class drawIcon 
 			{
-				file="\885th_Additions_Source\x\BPD\addons\Scanner\functions\fnc_drawIcon.sqf";
+				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_drawIcon.sqf";
 				recompile = 1;
+			};
+			class FindLostObjects
+			{
+				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_FindLostObjects.sqf";
+				postInit = 1;
 			};
 		};
 	};
