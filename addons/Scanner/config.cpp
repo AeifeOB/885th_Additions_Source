@@ -53,4 +53,22 @@ class CfgFunctions
 		};
 	};
 };
+class CfgWeapons {
+	class CBA_MiscItem;
+	class trackingFob: CBA_MiscItem {
+		author = "AifeSupport";
+		scope = 2;
+		displayName = "[AIFE] Tracking Fob";
+		descriptionShort = "Sensor Fob that can be attached to people and objects to broadcast a signal.";
+		ACE_attachable = "attachable_trackingFob";
+	};
+};
+class CfgVehicles {
+	class ACE_IR_Strobe_Effect;
+	class attachable_trackingFob: ACE_IR_Strobe_Effect {
+		author = "AifeSupport";
+		scope = 2;
+		displayName = "[AIFE] Tracking Fob";
+	};
+};
 #include "CfgEventhandlers.hpp"

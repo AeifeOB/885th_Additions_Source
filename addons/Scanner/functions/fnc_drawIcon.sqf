@@ -31,14 +31,10 @@ _loop = {
 		_txt = format["(%1 m)",round(_dist)]; 
 	};
 
-	private _iconSize = if (_dist > 50) then {
-		50 * AIFE_Scanner_scale;
+	private _iconSize = if (_dist > AIFE_Scanner_minimum) then {
+		10 * AIFE_Scanner_scale;
 	} else {
-		if (_dist < AIFE_Scanner_minimum) then {
-			0;
-		} else {
-			_dist * AIFE_Scanner_scale;
-		};
+		0;
 	};
 
 	private _pos = ASLToAGL getPosASLVisual _unit;
@@ -50,7 +46,7 @@ _loop = {
 		_pos, 
 		_iconSize, 
 		_iconSize,
-		(time * 100) % 360, 
+		(time * AIFE_Scanner_rotationRate) % 360, 
 		_txt, 
 		1, 
 		0.05, 

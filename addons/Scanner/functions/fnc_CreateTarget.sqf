@@ -18,7 +18,6 @@ if (_object == objNull) exitWith {
 			];
 			if (_object == objNull) exitWith {hint "Must be placed on an Object";};
 			_objName = format["AIFE_Scanner_%1", netId _object];
-			systemChat format["%1, %2 %3",_freq,_range, _objName];
 			missionNameSpace setVariable [_objName, _object];
 			[AIFE_Scanner_markers, _objName, [_freq, _range]] call CBA_fnc_hashSet;
 		}, {}, [_position, _object]

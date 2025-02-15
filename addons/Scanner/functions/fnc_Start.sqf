@@ -12,6 +12,7 @@ AIFE_Scanner_minimum = 10;
 AIFE_Scanner_colorOne = [0,0,1,1];
 AIFE_Scanner_colorTwo = [1,0,0,1];
 AIFE_Scanner_colorThree = [1,1,0,1];
+AIFE_Scanner_rotationRate = 50;
 
 
 ["Aife's Scanner", "ActiveScan", ["Active Scan Toggle", "Toggles the Active Scanning function."], {
@@ -75,6 +76,16 @@ AIFE_Scanner_colorThree = [1,1,0,1];
 ] call CBA_fnc_addSetting;
 
 [
+	"AIFE_Scanner_Rotation_Setting", 
+	"SLIDER", 
+	["Rotation Rate", "Rate that scanner icons rotate (cosmetic)."],
+	["Aife's Zeus Tools", "Scanner"],
+	[-100, 100, 50, 0],
+	false,
+	{AIFE_Scanner_rotationRate = (_this);}
+] call CBA_fnc_addSetting;
+
+[
 	"AIFE_Scanner_ColorOne_Setting", 
 	"COLOR", 
 	["Channel One Color", "Color for primary scanner frequency."],
@@ -105,7 +116,15 @@ AIFE_Scanner_colorThree = [1,1,0,1];
 ] call CBA_fnc_addSetting;
 
 
-["Aife's Zeus", "Create Scanner Target", {_this call AIFE_fnc_CreateTarget;}] call zen_custom_modules_fnc_register;
-["Aife's Zeus", "Remove Scanner Target", {_this call AIFE_fnc_RemoveTarget;}] call zen_custom_modules_fnc_register;
+["Aife's Zeus", "Create Scanner Target", {_this remoteExecCall ["AIFE_fnc_CreateTarget"];}] call zen_custom_modules_fnc_register;
+["Aife's Zeus", "Remove Scanner Target", {_this remoteExecCall ["AIFE_fnc_RemoveTarget"];}] call zen_custom_modules_fnc_register;
 
 AIFE_Scanner_SignalDraw = addMissionEventHandler ["Draw3D", {call AIFE_fnc_drawIcon;}];
+AIFE_Scanner_AttachedFob = ["ace_attach_attached", {
+	params ["_attachedObject", "_itemClassname", "_temporary"];
+	[getPosASL _attachedObject, _attachedObject] remoteExecCall ["AIFE_fnc_CreateTarget"];
+}] call CBA_fnc_addEventHandler;
+AIFE_Scanner_AetachedFob = ["ace_attach_detaching", {
+	params ["_attachedObject", "_itemClassname", "_temporary"];
+	[getPosASL _attachedObject, _attachedObject] remoteExecCall ["AIFE_fnc_RemoveTarget"];
+}] call CBA_fnc_addEventHandler;
