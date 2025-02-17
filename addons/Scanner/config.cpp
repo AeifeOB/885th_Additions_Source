@@ -22,28 +22,23 @@ class CfgFunctions
 			class Start
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Start.sqf";
-				recompile = 1;
 				postInit = 1;
 			};
 			class Scan
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Scan.sqf";
-				recompile = 1;
 			};
 			class CreateTarget
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_CreateTarget.sqf";
-				recompile = 1;
 			};
 			class RemoveTarget
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_RemoveTarget.sqf";
-				recompile = 1;
 			};
 			class drawIcon 
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_drawIcon.sqf";
-				recompile = 1;
 			};
 			class FindLostObjects
 			{

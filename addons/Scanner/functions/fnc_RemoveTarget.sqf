@@ -8,6 +8,7 @@ _objName = format["AIFE_Scanner_%1", netId _object];
 
 if ([AIFE_Scanner_markers, _objName] call CBA_fnc_hashHasKey) then {
 	[AIFE_Scanner_markers, _objName] call CBA_fnc_hashRem;
+	publicVariable "AIFE_Scanner_markers";
 } else {
 	hint "No Signal Found.";
 }

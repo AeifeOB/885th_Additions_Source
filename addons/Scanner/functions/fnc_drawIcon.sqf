@@ -7,7 +7,7 @@ _loop = {
 	private _range = _value select 1;
 	if (_dist > _range) then {continue;};
 
-	private _freq = _value select 0; 
+	private _freq = _value select 0;
 	private _color = [0,0,0];
 	switch (_freq) do {
 		case AIFE_Scanner_freq: {
@@ -44,7 +44,7 @@ _loop = {
 		"\Aifes_Zeus_Tools\addons\Scanner\textures\markerIcon.paa", 
 		_color, 
 		_pos, 
-		_iconSize, 
+		_iconSize,
 		_iconSize,
 		(time * AIFE_Scanner_rotationRate) % 360, 
 		_txt, 
