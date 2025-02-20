@@ -18,8 +18,7 @@ if (_object == objNull) exitWith {
 			];
 			if (_object == objNull) exitWith {hint "Must be placed on an Object";};
 			_objName = format["AIFE_Scanner_%1", netId _object];
-			missionNamespace setVariable [_objName, _object];
-			[AIFE_Scanner_markers, _objName, [_freq, _range]] call CBA_fnc_hashSet;
+			[AIFE_Scanner_markers, _objName, [_freq, _range, _object]] call CBA_fnc_hashSet;
 			publicVariable "AIFE_Scanner_markers";
 		}, {}, [_position, _object]
 ] call zen_dialog_fnc_create;

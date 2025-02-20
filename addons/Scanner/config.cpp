@@ -60,7 +60,8 @@ class CfgWeapons {
 };
 class CfgVehicles {
 	class ACE_IR_Strobe_Effect;
-	class attachable_trackingFob: ACE_IR_Strobe_Effect {
+	class separateIR_Base : ACE_IR_Strobe_Effect{};
+	class attachable_trackingFob: separateIR_Base {
 		author = "AifeSupport";
 		scope = 2;
 		displayName = "[AIFE] Tracking Fob";
