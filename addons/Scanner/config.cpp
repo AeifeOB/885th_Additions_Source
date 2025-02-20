@@ -43,7 +43,6 @@ class CfgFunctions
 			class FindLostObjects
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_FindLostObjects.sqf";
-				postInit = 1;
 			};
 		};
 	};
