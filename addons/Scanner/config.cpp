@@ -19,9 +19,9 @@ class CfgFunctions
 	{
 		tag = "AIFE";
 		class ScannerHUD {
-			class Start
+			class ScannerStart
 			{
-				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Start.sqf";
+				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_ScannerStart.sqf";
 				postInit = 1;
 			};
 			class Scan
