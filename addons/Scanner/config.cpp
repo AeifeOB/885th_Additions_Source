@@ -22,7 +22,7 @@ class CfgFunctions
 			class Start
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Start.sqf";
-				init = 1;
+				postInit = 1;
 			};
 			class Scan
 			{
@@ -43,7 +43,6 @@ class CfgFunctions
 			class FindLostObjects
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_FindLostObjects.sqf";
-				postInit = 1;
 			};
 		};
 	};

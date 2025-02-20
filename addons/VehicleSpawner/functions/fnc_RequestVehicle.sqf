@@ -1,28 +1,10 @@
-params["_pads","_vehicles"];
-/*
-private _dialog = (uiNamespace getVariable "885SpawnerUI");
-_dialog = createDialog "VehicleSpawnDialog";
-if (!_dialog) then { hint "Dialog could not be opened!" };
-waitUntil {!isNull (findDisplay 3234)};
-
-lbClear 2100;
-{
-	_index = lbAdd [2100, _x select 0];
-	_data = lbSetData [2100, _index, _x select 1];
-} forEach _pads;
-lbClear 2101;
-{
-	_index = lbAdd [2101, _x select 0];
-	_data = lbSetData [2101, _index, _x select 1];
-} forEach _vehicles;
-*/
 ["Spawn Vehicle", [
 		[
 			"LIST", 
 			["Pads", "Select Spawn Location."],
 			[
-				["AIFE_Spawner_pads"] call CBA_fnc_hashValues,
-				["AIFE_Spawner_pads"] call CBA_fnc_hashKeys,
+				[AIFE_Spawner_pads] call CBA_fnc_hashValues,
+				[AIFE_Spawner_pads] call CBA_fnc_hashKeys,
 				0
 			],
 			true
@@ -31,8 +13,8 @@ lbClear 2101;
 			"LIST", 
 			["Vehicle", "Vehicle you'd like to spawn."], 
 			[
-				["AIFE_Spawner_vehicleList"] call CBA_fnc_hashValues,
-				["AIFE_Spawner_vehicleList"] call CBA_fnc_hashKeys,
+				[AIFE_Spawner_vehicleList] call CBA_fnc_hashValues,
+				[AIFE_Spawner_vehicleList] call CBA_fnc_hashKeys,
 				0
 			],
 			true
@@ -53,8 +35,10 @@ lbClear 2101;
 	{
 		_values = _this select 0;
 
-		_pad = _values select 0;
-		_vehicle = _values select 1;
+		_pad = (_values select 0) select 0;
+		_padOffset = (_values select 0) select 1;
+
+		_vehicle = (_values select 1) select 0;
 		_crew = _values select 2;
 		_clear = _values select 3;
 

@@ -148,12 +148,12 @@ AIFE_Scanner_DetachedFob = ["ace_attach_detaching", {
 }] call CBA_fnc_addEventHandler;
 
 if (hasInterface) then {
-	player addEventHandler ["PostInit", {
-		["Refresh", ["server"]] call CBA_fnc_serverEvent;
+	player addEventHandler ["Respawn", {
+		["RefreshScanner", ["server"]] call CBA_fnc_serverEvent;
 	}];
 };
 if (isServer) then {
-	AIFE_Scanner_PlayerAdded = ["Refresh", {
+	AIFE_Scanner_PlayerAdded = ["RefreshScanner", {
 		publicVariable "AIFE_Scanner_markers";
 	}] call CBA_fnc_addEventHandler;
 };

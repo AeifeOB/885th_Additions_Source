@@ -1,39 +1,9 @@
-params["_padIndex", "_vehicleIndex", "_hasCrew"];
+params["_pad", "_vehicle", "_hasCrew"];
 
-_dialog = findDisplay 3234;
-_padControl = _dialog displayCtrl 2100;
-_vehicleControl = _dialog displayCtrl 2101;
-_crewControl = _dialog displayCtrl 2102;
-
-for [{private _i = 0}, {_i < lbSize _padControl}, {_i = _i + 1}] do {
-	if (_padControl lbIsSelected _i) then {
-		_padIndex = _i;
-		break;
-	};
-};
-if (isNil "_padIndex") exitWith{ systemChat "No Pad Selected."};
-for [{private _i = 0}, {_i < lbSize _vehicleControl}, {_i = _i + 1}] do {
-	if (_vehicleControl lbIsSelected _i) then {
-		_vehicleIndex = _i;
-		break;
-	};
-};
-if (isNil "_vehicleIndex") exitWith{ systemChat "No Vehicle Selected."};
-_hasCrew = ctrlChecked _crewControl;
-
-systemChat format["Pad %1, Vehicle %2", _padIndex, _vehicleIndex];
-
-_pad = (pads select _padIndex);
-_padName = _pad select 0;
-_pad = missionNamespace getVariable (_pad select 1);
-_vehicle = (vehicleList select _vehicleIndex);
-_vehicleName = _vehicle select 0;
-_vehicle = _vehicle select 1;
-
-systemChat format["Pad %1, Vehicle %2", _padName, _vehicleName];  
+systemChat format["Pad %1, Vehicle %2", _pad, _vehicle];
 
 _blocked = false;
-systemChat format ["Checking %1 area.", _padName];
+systemChat format ["Checking %1 area.", _pad];
 _trig = createTrigger ["EmptyDetector", getPos _pad];
 _trig setTriggerArea [10,10,10,true];
 _objects = nearestTerrainObjects [_pad, [], 10];
@@ -43,6 +13,7 @@ if (count _objects > 0) then {
 };
 _vehicles = vehicles inAreaArray _trig;
 if (count _vehicles > 0) then {
+	hint _vehicles;
 	_blocked = true;
 };
 
@@ -58,6 +29,6 @@ if (!_blocked) then {
 	};
 	break;
 } else {
-	systemChat format ["%1 Blocked.", _padName];
+	systemChat format ["%1 Blocked.", _pad];
 };
 deleteVehicle _trig;

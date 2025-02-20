@@ -23,10 +23,10 @@ class CfgFunctions
 	{
 		tag = "AIFE";
 		class VehicleSpawner {
-			class Start
+			class SpawnerStart
 			{
 				file="\Aifes_Zeus_Tools\addons\VehicleSpawner\functions\fnc_Start.sqf";
-				init = 1;
+				postInit = 1;
 			};
 			class RequestVehicle
 			{
@@ -86,7 +86,7 @@ class CfgVehicles
 				onlyForPlayer = 1;
 				position = "laptop_lid";
 				condition = "true";
-				statement = "[pads, vehicleList] call AIFE_Spawner_fnc_RequestVehicle;"
+				statement = "call AIFE_Spawner_fnc_RequestVehicle;";
 			};
 		};
 		ace_cargo_canLoad=0;
@@ -104,8 +104,8 @@ class CfgVehicles
 	class SpawnPad_Hidden : Land_HelipadEmpty_F {
 		class EventHandlers
 		{
-			init = "params ['_entity']; [_entity] call AIFE_fnc_addPad;"
-		}
+			init = "params ['_entity']; [_entity] call AIFE_fnc_addPad;";
+		};
 		ace_cargo_canLoad=0;
 		ace_cargo_size=10;
 		ace_dragging_canCarry=0;
@@ -119,8 +119,8 @@ class CfgVehicles
 	class SpawnPad : Land_HelipadCircle_F {
 		class EventHandlers
 		{
-			init = "params ['_entity']; [_entity] call AIFE_fnc_addPad;"
-		}
+			init = "params ['_entity']; [_entity] call AIFE_fnc_addPad;";
+		};
 		ace_cargo_canLoad=0;
 		ace_cargo_size=10;
 		ace_dragging_canCarry=0;
