@@ -140,11 +140,15 @@ AIFE_Scanner_SignalDraw = addMissionEventHandler ["Draw3D", {call AIFE_fnc_drawI
 
 AIFE_Scanner_AttachedFob = ["ace_attach_attached", {
 	params ["_attachedObject", "_itemClassname", "_temporary"];
-	[getPosASL _attachedObject, _attachedObject] call AIFE_fnc_CreateTarget;
+	if (_itemClassname == "attachable_trackingFob" || _itemClassname == "trackingFob") then {
+		[getPosASL _attachedObject, _attachedObject] call AIFE_fnc_CreateTarget;
+	};
 }] call CBA_fnc_addEventHandler;
 AIFE_Scanner_DetachedFob = ["ace_attach_detaching", {
-	params ["_attachedObject", "_itemClassname", "_temporary"];
-	[getPosASL _attachedObject, _attachedObject] call AIFE_fnc_RemoveTarget;
+	params ["_attachedObject", "_itemName", "_temporary"];
+	if (_itemName == "attachable_trackingFob" || _itemName == "trackingFob") then {
+		[getPosASL _attachedObject, _attachedObject] call AIFE_fnc_RemoveTarget;
+	};
 }] call CBA_fnc_addEventHandler;
 
 if (hasInterface) then {
