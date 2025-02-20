@@ -22,7 +22,7 @@ class CfgFunctions
 			class Start
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Start.sqf";
-				postInit = 1;
+				init = 1;
 			};
 			class Scan
 			{

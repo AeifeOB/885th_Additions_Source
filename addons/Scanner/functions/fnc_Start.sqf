@@ -148,7 +148,7 @@ AIFE_Scanner_DetachedFob = ["ace_attach_detaching", {
 }] call CBA_fnc_addEventHandler;
 
 if (hasInterface) then {
-	player addEventHandler ["Respawn", {
+	player addEventHandler ["PostInit", {
 		["Refresh", ["server"]] call CBA_fnc_serverEvent;
 	}];
 };
