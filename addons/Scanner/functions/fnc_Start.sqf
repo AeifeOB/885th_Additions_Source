@@ -3,7 +3,6 @@
 AIFE_Scanner_isActive = false;
 AIFE_Scanner_altActive = false;
 AIFE_Scanner_civActive = false;
-AIFE_Scanner_markers = [] call CBA_fnc_hashCreate;
 AIFE_Scanner_freq = 186.0;
 AIFE_Scanner_altfreq = 100.0;
 AIFE_Scanner_publicfreq = 800.0;
@@ -12,15 +11,25 @@ AIFE_Scanner_minimum = 10;
 AIFE_Scanner_colorOne = [0,0,1,1];
 AIFE_Scanner_colorTwo = [1,0,0,1];
 AIFE_Scanner_colorThree = [1,1,0,1];
-
+AIFE_Scanner_rotationRate = 50;
+AIFE_Scanner_markers = [] call CBA_fnc_hashCreate;
 
 ["Aife's Scanner", "ActiveScan", ["Active Scan Toggle", "Toggles the Active Scanning function."], {
 	call AIFE_fnc_Scan;
 }, "", [DIK_INSERT, [false, false, false]]] call CBA_fnc_addKeybind;
 
 ["Aife's Scanner", "Ping", ["Scanner Ping", "Broad-spectrum scan shows all signals for a brief moment."], {
+	hint "This command is not implemented.";
 	//call AIFE_fnc_ping;
-}, "", [DIK_INSERT, [false, true, false]]] call CBA_fnc_addKeybind;
+}, ""] call CBA_fnc_addKeybind;
+
+["Aife's Scanner", "AlternateActive", ["Alternate Active Toggle", "Toggle the alternate frequency."], {
+	AIFE_Scanner_altActive = !AIFE_Scanner_altActive;
+}, ""] call CBA_fnc_addKeybind;
+
+["Aife's Scanner", "CivilianActive", ["Civilian Active Toggle", "Toggle the civilian frequency."], {
+	AIFE_Scanner_civActive = !AIFE_Scanner_civActive;
+}, ""] call CBA_fnc_addKeybind;
 
 ["Aife's Scanner", "FrequencyChange", ["Open Frequency Dialog", "Open a dialog to change scanner frequency."], {
 	["Scanner Settings", [
@@ -41,7 +50,7 @@ AIFE_Scanner_colorThree = [1,1,0,1];
 		], 
 		[
 			"CHECKBOX", 
-			"Civilian Signals Active", 
+			["Civilian Signals Active", "Frequency 800.0"], 
 			false
 		]
 	],
@@ -57,7 +66,7 @@ AIFE_Scanner_colorThree = [1,1,0,1];
 [
 	"AIFE_Scanner_Scale_Setting", 
 	"SLIDER", 
-	["Icon Scale", "Scales the icon (along with distance)."],
+	["Icon Scale", "Scales the icon."],
 	["Aife's Zeus Tools", "Scanner"],
 	[0.01, 0.5, 0.1, 2],
 	false,
@@ -65,13 +74,33 @@ AIFE_Scanner_colorThree = [1,1,0,1];
 ] call CBA_fnc_addSetting;
 
 [
+	"AIFE_Scanner_Text_Scale_Setting", 
+	"SLIDER", 
+	["Text Scale", "Scales the text."],
+	["Aife's Zeus Tools", "Scanner"],
+	[1, 100, 50, 2],
+	false,
+	{AIFE_Scanner_text_scale = (_this);}
+] call CBA_fnc_addSetting;
+
+[
 	"AIFE_Scanner_Minimum_Setting", 
 	"SLIDER", 
-	["Hide Icon Distance", "Minimum distance that the icon hide itself at (in meters)."],
+	["Hide Icon Distance", "Minimum distance that the icon hides itself at (in meters)."],
 	["Aife's Zeus Tools", "Scanner"],
 	[0, 100, 10, 0],
 	false,
 	{AIFE_Scanner_minimum = (_this);}
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_Scanner_Rotation_Setting", 
+	"SLIDER", 
+	["Rotation Rate", "Rate that scanner icons rotate (cosmetic)."],
+	["Aife's Zeus Tools", "Scanner"],
+	[-100, 100, 50, 0],
+	false,
+	{AIFE_Scanner_rotationRate = (_this);}
 ] call CBA_fnc_addSetting;
 
 [
@@ -104,8 +133,27 @@ AIFE_Scanner_colorThree = [1,1,0,1];
 	{AIFE_Scanner_colorThree = (_this);}
 ] call CBA_fnc_addSetting;
 
-
 ["Aife's Zeus", "Create Scanner Target", {_this call AIFE_fnc_CreateTarget;}] call zen_custom_modules_fnc_register;
 ["Aife's Zeus", "Remove Scanner Target", {_this call AIFE_fnc_RemoveTarget;}] call zen_custom_modules_fnc_register;
 
 AIFE_Scanner_SignalDraw = addMissionEventHandler ["Draw3D", {call AIFE_fnc_drawIcon;}];
+
+AIFE_Scanner_AttachedFob = ["ace_attach_attached", {
+	params ["_attachedObject", "_itemClassname", "_temporary"];
+	[getPosASL _attachedObject, _attachedObject] call AIFE_fnc_CreateTarget;
+}] call CBA_fnc_addEventHandler;
+AIFE_Scanner_DetachedFob = ["ace_attach_detaching", {
+	params ["_attachedObject", "_itemClassname", "_temporary"];
+	[getPosASL _attachedObject, _attachedObject] call AIFE_fnc_RemoveTarget;
+}] call CBA_fnc_addEventHandler;
+
+if (hasInterface) then {
+	player addEventHandler ["Respawn", {
+		["Refresh", ["server"]] call CBA_fnc_serverEvent;
+	}];
+};
+if (isServer) then {
+	AIFE_Scanner_PlayerAdded = ["Refresh", {
+		publicVariable "AIFE_Scanner_markers";
+	}] call CBA_fnc_addEventHandler;
+};

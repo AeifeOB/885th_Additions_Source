@@ -22,28 +22,23 @@ class CfgFunctions
 			class Start
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Start.sqf";
-				recompile = 1;
 				postInit = 1;
 			};
 			class Scan
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_Scan.sqf";
-				recompile = 1;
 			};
 			class CreateTarget
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_CreateTarget.sqf";
-				recompile = 1;
 			};
 			class RemoveTarget
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_RemoveTarget.sqf";
-				recompile = 1;
 			};
 			class drawIcon 
 			{
 				file="\Aifes_Zeus_Tools\addons\Scanner\functions\fnc_drawIcon.sqf";
-				recompile = 1;
 			};
 			class FindLostObjects
 			{
@@ -51,6 +46,25 @@ class CfgFunctions
 				postInit = 1;
 			};
 		};
+	};
+};
+class CfgWeapons {
+	class CBA_MiscItem;
+	class trackingFob: CBA_MiscItem {
+		author = "AifeSupport";
+		scope = 2;
+		displayName = "[AIFE] Tracking Fob";
+		descriptionShort = "Sensor Fob that can be attached to people and objects to broadcast a signal.";
+		ACE_attachable = "attachable_trackingFob";
+	};
+};
+class CfgVehicles {
+	class ACE_IR_Strobe_Effect;
+	class separateIR_Base : ACE_IR_Strobe_Effect{};
+	class attachable_trackingFob: separateIR_Base {
+		author = "AifeSupport";
+		scope = 2;
+		displayName = "[AIFE] Tracking Fob";
 	};
 };
 #include "CfgEventhandlers.hpp"

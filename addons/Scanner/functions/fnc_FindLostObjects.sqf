@@ -1,12 +1,7 @@
 _checkHash = {
-	if (isNil (missionNamespace getVariable (_key))) then { 
-		systemChat format[
-			"Attached Unit %1 Removed - deleting...",
-			_key
-		];
+	if (isNil ((_value select 2))) then { 
 		[AIFE_Scanner_markers, _key] call CBA_fnc_hashRem;
+		publicVariable "AIFE_Scanner_markers";
 	};
 };
-if (isServer) then {
-	[AIFE_Scanner_markers, _checkHash] call CBA_fnc_hashEachPair;
-};
+[AIFE_Scanner_markers, _checkHash] call CBA_fnc_hashEachPair;

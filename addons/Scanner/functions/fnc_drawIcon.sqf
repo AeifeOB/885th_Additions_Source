@@ -2,12 +2,12 @@ if (!AIFE_Scanner_isActive) exitWith{};
 // cam position
 private _camPos = positionCameraToWorld [0,0,0];
 _loop = {
-	_unit = missionNamespace getVariable (_key); 
+	private _unit = (_value select 2); 
 	private _dist = _camPos distance _unit;
 	private _range = _value select 1;
 	if (_dist > _range) then {continue;};
 
-	private _freq = _value select 0; 
+	private _freq = _value select 0;
 	private _color = [0,0,0];
 	switch (_freq) do {
 		case AIFE_Scanner_freq: {
@@ -31,29 +31,28 @@ _loop = {
 		_txt = format["(%1 m)",round(_dist)]; 
 	};
 
-	private _iconSize = if (_dist > 50) then {
-		50 * AIFE_Scanner_scale;
+	private _iconSize = if (_dist > AIFE_Scanner_minimum) then {
+		10 * AIFE_Scanner_scale;
 	} else {
-		if (_dist < AIFE_Scanner_minimum) then {
-			0;
-		} else {
-			_dist * AIFE_Scanner_scale;
-		};
+		0;
 	};
+	private _textSize = AIFE_Scanner_text_scale / 1000;
 
 	private _pos = ASLToAGL getPosASLVisual _unit;
-	private _zOffset = (_pos select 2) + 1;
-	_pos = [_pos select 0, _pos select 1, _zOffset];
+	if (_unit isKindOf "CAManBase") then {
+		private _zOffset = (_pos select 2) + 1;
+		_pos = [_pos select 0, _pos select 1, _zOffset];
+	};
 	drawIcon3D [
 		"\Aifes_Zeus_Tools\addons\Scanner\textures\markerIcon.paa", 
 		_color, 
 		_pos, 
-		_iconSize, 
 		_iconSize,
-		(time * 100) % 360, 
+		_iconSize,
+		(time * AIFE_Scanner_rotationRate) % 360, 
 		_txt, 
 		1, 
-		0.05, 
+		_textSize, 
 		"RobotoCondensedBold", 
 		"left", 
 		true,
