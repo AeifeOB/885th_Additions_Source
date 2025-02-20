@@ -1,10 +1,10 @@
-name = "Aife's Zeus Tools";
+name = "Aife's Additions";
 author = "AifeSupport";
-logo = "files\modIcon.paa";
-logoOver = "files\modIcon.paa";
-tooltipOwned = "Experimental Additions Mod.";
+logo = "files\icon.paa";
+logoOver = "files\icon.paa";
+tooltipOwned = "Aife's Zeus Additions Mod.";
 picture = "";
-overview = "Experimental Additions, such as the scanner HUD and vehicle spawner.";
+overview = "Zeus object additions, such as a frequency scanner, vehicle spawner and ace arsenal with blacklist.";
 hideName = 0;
 hidePicture = 1;
-logoSmall = "files\modIcon.paa";
+logoSmall = "files\iconSmall.paa";

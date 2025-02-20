@@ -25,12 +25,20 @@ class CfgFunctions
 		class VehicleSpawner {
 			class SpawnerStart
 			{
-				file="\Aifes_Zeus_Tools\addons\VehicleSpawner\functions\fnc_Start.sqf";
+				file="\Aifes_Zeus_Tools\addons\VehicleSpawner\functions\fnc_SpawnerStart.sqf";
 				postInit = 1;
+			};
+			class ParseVehicles
+			{
+				file="\Aifes_Zeus_Tools\addons\VehicleSpawner\functions\fnc_ParseVehicles.sqf";
 			};
 			class RequestVehicle
 			{
 				file="\Aifes_Zeus_Tools\addons\VehicleSpawner\functions\fnc_RequestVehicle.sqf";
+			};
+			class CheckPad
+			{
+				file="\Aifes_Zeus_Tools\addons\VehicleSpawner\functions\fnc_CheckPad.sqf";
 			};
 			class ClearPad
 			{
@@ -65,9 +73,9 @@ class CfgEditorCategories
 };
 class CfgEditorSubcategories
 {
-	class SubStatics
+	class SubSpawner
 	{
-		displayName = "Infrastructure";
+		displayName = "Vehicle Spawner";
 	};
 };
 class CfgVehicles
@@ -86,7 +94,7 @@ class CfgVehicles
 				onlyForPlayer = 1;
 				position = "laptop_lid";
 				condition = "true";
-				statement = "call AIFE_Spawner_fnc_RequestVehicle;";
+				statement = "[] spawn AIFE_fnc_RequestVehicle;";
 			};
 		};
 		ace_cargo_canLoad=0;
@@ -96,7 +104,7 @@ class CfgVehicles
 		scope=2;
 		scopeCurator=2;
 		editorCategory="AifeLogistics";
-		editorSubCategory="SubStatics";
+		editorSubCategory="SubSpawner";
 		displayName="Vehicle Spawn Terminal";
 	};
 	class Land_HelipadEmpty_F;
@@ -104,7 +112,7 @@ class CfgVehicles
 	class SpawnPad_Hidden : Land_HelipadEmpty_F {
 		class EventHandlers
 		{
-			init = "params ['_entity']; [_entity] call AIFE_fnc_addPad;";
+			init = "params ['_entity']; [getPos _entity, _entity] call AIFE_fnc_addPad;";
 		};
 		ace_cargo_canLoad=0;
 		ace_cargo_size=10;
@@ -113,13 +121,13 @@ class CfgVehicles
 		scope=2;
 		scopeCurator=2;
 		editorCategory="AifeLogistics";
-		editorSubCategory="SubStatics";
+		editorSubCategory="SubSpawner";
 		displayName="Hidden Spawn Pad";
 	};
 	class SpawnPad : Land_HelipadCircle_F {
 		class EventHandlers
 		{
-			init = "params ['_entity']; [_entity] call AIFE_fnc_addPad;";
+			init = "params ['_entity']; [getPos _entity, _entity] call AIFE_fnc_addPad;";
 		};
 		ace_cargo_canLoad=0;
 		ace_cargo_size=10;
@@ -128,7 +136,7 @@ class CfgVehicles
 		scope=2;
 		scopeCurator=2;
 		editorCategory="AifeLogistics";
-		editorSubCategory="SubStatics";
+		editorSubCategory="SubSpawner";
 		displayName="Spawn Pad";
 	};
 };

@@ -27,7 +27,7 @@
 		], 
 		[
 			"CHECKBOX", 
-			["Clear Pad", "Delete any objects on the pad (does not remove people)."], 
+			["Clear Pad", "Delete any vehicles on the pad (does not remove people nor map objects)."], 
 			false,
 			true
 		]
@@ -37,14 +37,12 @@
 
 		_pad = (_values select 0) select 0;
 		_padOffset = (_values select 0) select 1;
+		_padArray = [_pad, _padOffset];
 
 		_vehicle = (_values select 1) select 0;
 		_crew = _values select 2;
 		_clear = _values select 3;
 
-		if (_clear) then {
-			[_pad] call AIFE_fnc_ClearPad;
-		};
-		[_pad, _vehicle, _crew] call AIFE_fnc_SpawnVehicle;
+		[_padArray, _vehicle, _crew, _clear] spawn AIFE_fnc_SpawnVehicle;
 	}
 ] call zen_dialog_fnc_create;

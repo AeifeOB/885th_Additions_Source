@@ -1,4 +1,4 @@
-params ["_object"];
+params ["_position","_object"];
 
  if (isNil "AIFE_Spawner_pads") then {
 	AIFE_Spawner_pads = [] call CBA_fnc_hashCreate;

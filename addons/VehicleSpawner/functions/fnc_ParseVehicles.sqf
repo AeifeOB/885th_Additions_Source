@@ -1,10 +1,10 @@
 params ["_text"];
 hint _text;
 private _array = parseSimpleArray _text;
-
+AIFE_Spawner_vehicleList = [] call CBA_fnc_hashCreate;
 {
-	// Current result is saved in variable _x
-	if (_displayName = getText (configFile >> "CfgVehicles" > _x >> "displayName")) then {
+	_displayName = getText (configFile >> "CfgVehicles" >> _x >> "displayName");
+	if (!isNil("_displayName")) then {
 		if ([AIFE_Spawner_vehicleList, _displayName] call CBA_fnc_hashHasKey) then {
 			hint format ["Duplicate Entry %1", _displayName];
 			continue;
