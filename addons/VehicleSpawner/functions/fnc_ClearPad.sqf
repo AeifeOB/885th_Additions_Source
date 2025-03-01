@@ -6,6 +6,7 @@ _trig setTriggerArea [10,10,10,true];
 
 _vehicles = vehicles inAreaArray _trig;
 {
+	//TODO add vehicle inventory
 	deleteVehicle _x;
 } foreach _vehicles;
 deleteVehicle _trig;

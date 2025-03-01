@@ -59,7 +59,10 @@ class CfgFunctions
 			class AddVehicle
 			{
 				file="\Aifes_Zeus_Tools\addons\VehicleSpawner\functions\fnc_AddVehicle.sqf";
-				postInit = 1;
+			};
+			class StoreVehicle
+			{
+				file="\Aifes_Zeus_Tools\addons\VehicleSpawner\functions\fnc_StoreVehicle.sqf";
 			};
 		};
 	};
@@ -96,6 +99,17 @@ class CfgVehicles
 				condition = "true";
 				statement = "[] spawn AIFE_fnc_RequestVehicle;";
 			};
+			class Spawner_Clear 
+			{
+				userActionID = 50;
+				displayName = "Store Vehicle";
+				radius = 5;
+				priority = 1;
+				onlyForPlayer = 1;
+				position = "laptop_lid";
+				condition = "true";
+				statement = "[] spawn AIFE_fnc_StoreVehicle;";
+			};
 		};
 		ace_cargo_canLoad=0;
 		ace_cargo_size=10;
@@ -109,35 +123,5 @@ class CfgVehicles
 	};
 	class Land_HelipadEmpty_F;
 	class Land_HelipadCircle_F;
-	class SpawnPad_Hidden : Land_HelipadEmpty_F {
-		class EventHandlers
-		{
-			init = "params ['_entity']; [getPos _entity, _entity] call AIFE_fnc_addPad;";
-		};
-		ace_cargo_canLoad=0;
-		ace_cargo_size=10;
-		ace_dragging_canCarry=0;
-		ace_dragging_canDrag=0;
-		scope=2;
-		scopeCurator=2;
-		editorCategory="AifeLogistics";
-		editorSubCategory="SubSpawner";
-		displayName="Hidden Spawn Pad";
-	};
-	class SpawnPad : Land_HelipadCircle_F {
-		class EventHandlers
-		{
-			init = "params ['_entity']; [getPos _entity, _entity] call AIFE_fnc_addPad;";
-		};
-		ace_cargo_canLoad=0;
-		ace_cargo_size=10;
-		ace_dragging_canCarry=0;
-		ace_dragging_canDrag=0;
-		scope=2;
-		scopeCurator=2;
-		editorCategory="AifeLogistics";
-		editorSubCategory="SubSpawner";
-		displayName="Spawn Pad";
-	};
 };
 #include "CfgEventhandlers.hpp"

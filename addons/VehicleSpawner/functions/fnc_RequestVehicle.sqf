@@ -1,3 +1,6 @@
+if (count AIFE_Spawner_pads == 0) exitWith {
+	systemChat "Add a pad to continue.";
+};
 ["Spawn Vehicle", [
 		[
 			"LIST", 
