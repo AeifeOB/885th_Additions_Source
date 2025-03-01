@@ -23,7 +23,7 @@ AIFE_Spawner_vehicleList = [] call CBA_fnc_hashCreate;
 ["Aife's Spawner", "Remove Pad", {_this call AIFE_fnc_RemovePad;}] call zen_custom_modules_fnc_register;
 
 if (hasInterface) then {
-	player addEventHandler ["PostInit", {
+	player addEventHandler ["Respawn", {
 		["RefreshSpawner", ["server"]] call CBA_fnc_serverEvent;
 	}];
 };
@@ -33,3 +33,4 @@ if (isServer) then {
 		publicVariable "AIFE_Spawner_vehicleList";
 	}] call CBA_fnc_addEventHandler;
 };
+systemChat "Vehicle Spawner Started."
