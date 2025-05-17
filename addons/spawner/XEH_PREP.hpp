@@ -1,0 +1,10 @@
+PREP(SpawnerStart);
+PREP(ParseVehicles);
+PREP(RequestVehicle);
+PREP(SpawnVehicle);
+PREP(StoreVehicle);
+PREP(CheckPad);
+PREP(ClearPad);
+PREP(AddPad);
+PREP(RemovePad);
+PREP(AddVehicle);

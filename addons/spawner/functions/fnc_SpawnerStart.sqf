@@ -1,7 +1,7 @@
 #include "../script_component.hpp"
 
-AIFE_Spawner_pads = [] call CBA_fnc_hashCreate;
-AIFE_Spawner_vehicleList = [] call CBA_fnc_hashCreate;
+GVAR(pads) = [] call CBA_fnc_hashCreate;
+GVAR(vehicleList) = [] call CBA_fnc_hashCreate;
 
 [
 	"AIFE_Spawner_Vehicles_Setting", 
@@ -13,24 +13,25 @@ AIFE_Spawner_vehicleList = [] call CBA_fnc_hashCreate;
 	{
 		params ["_value"];
 		if (isServer || !isMultiplayer) then {
-			[_value] call AIFE_fnc_ParseVehicles;
+			[_value] call FUNC(ParseVehicles);
 		};
 	},
 	false
 ] call CBA_fnc_addSetting;
 
-["Aife's Spawner", "Add Pad", {_this call AIFE_fnc_AddPad;}] call zen_custom_modules_fnc_register;
-["Aife's Spawner", "Remove Pad", {_this call AIFE_fnc_RemovePad;}] call zen_custom_modules_fnc_register;
+["Aife's Spawner", "Add Pad", {_this call FUNC(AddPad);}] call zen_custom_modules_fnc_register;
+["Aife's Spawner", "Remove Pad", {_this call FUNC(RemovePad);}] call zen_custom_modules_fnc_register;
 
 if (hasInterface) then {
 	player addEventHandler ["Respawn", {
 		["RefreshSpawner", ["server"]] call CBA_fnc_serverEvent;
 	}];
 };
+
 if (isServer) then {
-	AIFE_Spawner_PlayerAdded = ["RefreshSpawner", {
-		publicVariable "AIFE_Spawner_pads";
-		publicVariable "AIFE_Spawner_vehicleList";
+	["RefreshSpawner", {
+		publicVariable QGVAR(pads);
+		publicVariable QGVAR(vehicleList);
 	}] call CBA_fnc_addEventHandler;
 };
 systemChat "Vehicle Spawner Started."

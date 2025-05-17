@@ -1,9 +1,8 @@
 #define MAINPREFIX z
 #define PREFIX AIFE
-#define COMPONENT scanner
-
-#define DEBUG_MODE_FULL
+#define COMPONENT spawner
 #define DISABLE_COMPILE_CACHE
+#define DEBUG_MODE_FULL
 
 #include "\x\cba\addons\main\script_macros_common.hpp"
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"

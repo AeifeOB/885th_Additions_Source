@@ -1,4 +1,6 @@
-if (count AIFE_Spawner_pads == 0) then {
+#include "script_component.hpp"
+
+if (count GVAR(pads) == 0) then {
 	hint "Add a pad to continue.";
 };
 ["Store Vehicle", [
@@ -6,8 +8,8 @@ if (count AIFE_Spawner_pads == 0) then {
 			"LIST", 
 			["Pads", "Select a Vehicle Pad."],
 			[
-				[AIFE_Spawner_pads] call CBA_fnc_hashValues,
-				[AIFE_Spawner_pads] call CBA_fnc_hashKeys,
+				[GVAR(pads)] call CBA_fnc_hashValues,
+				[GVAR(pads)] call CBA_fnc_hashKeys,
 				0
 			],
 			true
@@ -18,6 +20,6 @@ if (count AIFE_Spawner_pads == 0) then {
 
 		_pad = (_values select 0) select 0;
 
-		[_pad] spawn AIFE_fnc_ClearPad;
+		[_pad] spawn FUNC(ClearPad);
 	}
 ] call zen_dialog_fnc_create;

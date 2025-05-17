@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 params["_position", "_object"];
 
 if (_object == objNull) exitWith {
@@ -7,11 +9,11 @@ if (_object == objNull) exitWith {
 _findPad = {
 	// Current result is saved in variable _x
 	if (_value select 0 == _object) then {
-		[AIFE_Spawner_pads, _key] call CBA_fnc_hashRem;
-		publicVariable "AIFE_Spawner_pads";
+		[GVAR(pads), _key] call CBA_fnc_hashRem;
+		publicVariable QGVAR(pads);
 	} else {
 		hint "Pad not found."
 	}
 }; 
 
-[AIFE_Spawner_pads, _findPad] call CBA_fnc_hashEachPair;
+[GVAR(pads), _findPad] call CBA_fnc_hashEachPair;

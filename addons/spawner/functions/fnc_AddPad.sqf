@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 params ["_position","_object"];
 
 ["Create Pad", [
@@ -24,13 +26,13 @@ params ["_position","_object"];
 		];
 		if (_object == objNull) exitWith {hint "Must be placed on an Object";};
 
-		if ([AIFE_Spawner_pads, _name] call CBA_fnc_hashHasKey) then {
+		if ([GVAR(pads), _name] call CBA_fnc_hashHasKey) then {
 			hint "Name is not unique.";
-			_number = ([AIFE_Spawner_pads] call CBA_fnc_hashSize);
+			_number = ([GVAR(pads)] call CBA_fnc_hashSize);
 			_name = format ["%1 %2", _name, _number];
 		};
 
-		[AIFE_Spawner_pads, _name, [_object, _offset]] call CBA_fnc_hashSet;
-		publicVariable "AIFE_Spawner_pads";
+		[GVAR(pads), _name, [_object, _offset]] call CBA_fnc_hashSet;
+		publicVariable QGVAR(pads);
 	}, {}, [_position, _object]
 ] call zen_dialog_fnc_create;

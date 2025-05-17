@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 params["_padArray", "_vehicle", "_hasCrew", "_clear"];
 
 systemChat format ["Checking area."];
@@ -5,10 +7,10 @@ private _pad = _padArray select 0;
 private _padOffset = _padArray select 1;
 
 if (_clear) then {
-	[_pad] call AIFE_fnc_ClearPad;
+	[_pad] call FUNC(ClearPad);
 	sleep 1.5;
 };
-if ([_pad] call AIFE_fnc_CheckPad) then {
+if ([_pad] call FUNC(CheckPad)) then {
 	_vehicleSpawned = _vehicle createVehicle getPosASL _pad;
 	_position = getPosASL _pad;
 	_position set [2, (getPosASL _pad select 2) + _padOffset];

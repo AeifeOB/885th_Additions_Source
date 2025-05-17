@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 params["_pad"];
 
 _trig = createTrigger ["EmptyDetector", getPos _pad];
@@ -8,6 +9,6 @@ _vehicles = vehicles inAreaArray _trig;
 {
 	//TODO add vehicle inventory
 	deleteVehicle _x;
-} foreach _vehicles;
+} forEach _vehicles;
 deleteVehicle _trig;
 true;
