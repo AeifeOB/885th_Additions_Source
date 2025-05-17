@@ -1,3 +1,5 @@
 *.pbo
-*.bak
-.vscode*
+.hemttout
+hemtt
+hemtt.exe
+*.biprivatekey

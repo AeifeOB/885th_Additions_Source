@@ -1,0 +1,1 @@
+#include "\z\AIFE\addons\scanner\script_component.hpp"

@@ -1,0 +1,45 @@
+name = "Aife's Zeus Tools"
+author = "AifeSupport"
+modname = "aifeZT"
+prefix = "AIFE"
+mainprefix = "z"
+
+[files]
+include = [
+  "mod.cpp",
+  "./files",
+  "./include",
+  "LICENSE",
+  "README.md",
+]
+exclude = [
+  "*.psd",
+  "*.png",
+  "*.tga",
+  "*.sqm",
+]
+
+[properties]
+author = "AifeSupport"
+url = "https://github.com/AeifeOB/885th_Additions_Source"
+
+[version]
+git_hash = 0
+major = 0
+minor = 2
+patch = 1
+build = 11
+
+[hemtt.launch.default]
+workshop = [
+  "450814997",  # CBA_A3's Workshop ID
+  "894678801",  # TFAR Beta
+  "1779063631", # Zeus Enhanced 
+  "2369477168", # Advanced Developer Tools
+  "463939057",  # ACE
+  "2515887728", # Crows EW
+  "1645973522", # Intercept Minimal Dev
+  "1585582292", # Arma Debug Engine
+]
+mission = "ModTesting.VR"
+parameters = []
