@@ -1,6 +1,9 @@
 #include "../script_component.hpp"
 
+GVAR(terminals) = [] call CBA_fnc_hashCreate;
+GVAR(padGroups) = [] call CBA_fnc_hashCreate;
 GVAR(pads) = [] call CBA_fnc_hashCreate;
+GVAR(defaultVehicleList) = "";
 GVAR(vehicleList) = [] call CBA_fnc_hashCreate;
 
 [
@@ -8,12 +11,13 @@ GVAR(vehicleList) = [] call CBA_fnc_hashCreate;
 	"EDITBOX", 
 	["Vehicle List", "Set the list of vehicles [editor name, comma separated]."],
 	["Aife's Vehicle Spawner", "Vehicles"],
-	"[""apc_wheeled_03"",""apc_wheeled_02""]",
+	"[""B_APC_Wheeled_01_cannon_F"",""B_Heli_Transport_03_F""]",
 	1,
 	{
 		params ["_value"];
 		if (isServer || !isMultiplayer) then {
-			[_value] call FUNC(ParseVehicles);
+			GVAR(defaultVehicleList) = _value;
+			[_value] call FUNC(updateVehicleList);
 		};
 	},
 	false
