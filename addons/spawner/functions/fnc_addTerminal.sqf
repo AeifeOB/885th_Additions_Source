@@ -1,12 +1,17 @@
 #include "script_component.hpp"
 
-params ["_object"];
+params ["_position", "_object"];
+
+if (_object == objNull) exitWith {
+	hint "Must be placed on an object.";
+};
+
 _groupHash = GVAR(padGroups);
 _displayNames = [];
 _lists = [];
 _breakdown = {
-	_displayNames append _key;
-	_lists append _value;
+	_displayNames pushBack _key;
+	_lists pushBack _value;
 };
 [_groupHash, _breakdown] call CBA_fnc_hashEachPair;
 
@@ -34,7 +39,7 @@ _breakdown = {
 			"Group",
 			[
 				_displayNames,
-				_lists,
+				_displayNames,
 				0,
 				4
 			]
@@ -42,10 +47,13 @@ _breakdown = {
 	],
 	{
 		params ["_dialogResult","_in"];
+
 		_dialogResult params[
 			"_name",
-			"_list"
+			"_list",
+			"_groupName"
 		];
+
 		_in params [
 			"_object"
 		];
@@ -56,11 +64,48 @@ _breakdown = {
 			_number = ([GVAR(terminals)] call CBA_fnc_hashSize);
 			_name = format ["%1 %2", _name, _number];
 		};
-
-		_pads = [] call CBA_fnc_hashCreate;
+		
 		_vehicleList = [_list] call FUNC(ParseVehicles);
 
-		[GVAR(terminals), _name, [_object, _pads, _vehicleList]] call CBA_fnc_hashSet;
+		[GVAR(terminals), _name, [_object, _groupName, _vehicleList]] call CBA_fnc_hashSet;
 		publicVariable QGVAR(terminals);
+		
+		_object addAction
+		[
+			"Request Vehicle",	// title
+			{
+				params ["_target", "_caller", "_actionId", "_arguments"]; // script
+				[_target] spawn AIFE_spawner_fnc_RequestVehicle;
+			},
+			nil,		// arguments
+			1.5,		// priority
+			true,		// showWindow
+			true,		// hideOnUse
+			"",			// shortcut
+			"true",		// condition
+			5,			// radius
+			false,		// unconscious
+			"",			// selection
+			""			// memoryPoint
+		];
+		
+		_object addAction
+		[
+			"Store Vehicle",	// title
+			{
+				params ["_target", "_caller", "_actionId", "_arguments"]; // script
+				[_target] spawn AIFE_spawner_fnc_StoreVehicle;
+			},
+			nil,		// arguments
+			1.5,		// priority
+			true,		// showWindow
+			true,		// hideOnUse
+			"",			// shortcut
+			"true",		// condition
+			5,			// radius
+			false,		// unconscious
+			"",			// selection
+			""			// memoryPoint
+		];
 	}, {}, [_object]
 ] call zen_dialog_fnc_create;

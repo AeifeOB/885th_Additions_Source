@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={4095.6694,46.952221,4026.2322};
-		dir[]={0.024397116,-0.56700087,0.82336324};
-		up[]={0.016793547,0.82371432,0.56675535};
-		aside[]={0.9995662,-1.3111799e-07,-0.029617527};
+		pos[]={4097.998,46.952221,4041.7092};
+		dir[]={0.024396967,-0.56699735,0.82335824};
+		up[]={0.016793355,0.82371962,0.56674862};
+		aside[]={0.99956131,0,-0.029618049};
 	};
 };
 binarizationWanted=0;
@@ -1428,6 +1428,19 @@ class CustomAttributes
 		};
 		class Attribute2
 		{
+			property="ENH_AddObjectsToZeus";
+			expression="        if (_value isEqualType true) then {_value = 2};        if (!is3DEN && isServer && _value > 0) then        {            _value spawn" \n "            {" \n "                params ['_value'];" \n "                waitUntil {sleep 1; allCurators isNotEqualTo []};" \n "                if (_value == 1 || _value == 2) then                {                    allCurators apply {_x addCuratorEditableObjects [allMissionObjects '', true]};                };                if (_value == 2) then                {                    addMissionEventHandler ['EntityCreated',                    {                        params ['_entity'];                        allCurators apply {_x addCuratorEditableObjects [[_entity], true]};                    }];                };            };        }";
+			class Value
+			{
+				class data
+				{
+					singleType="SCALAR";
+					value=2;
+				};
+			};
+		};
+		class Attribute3
+		{
 			property="EnableDebugConsole";
 			expression="true";
 			class Value
@@ -1439,7 +1452,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute3
+		class Attribute4
 		{
 			property="Init";
 			expression="if !(is3DEN) then {[] call compile _value;};";
@@ -1452,7 +1465,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute4
+		class Attribute5
 		{
 			property="cba_settings_hasSettingsFile";
 			expression="false";
@@ -1465,7 +1478,7 @@ class CustomAttributes
 				};
 			};
 		};
-		nAttributes=5;
+		nAttributes=6;
 	};
 };
 class Mission
@@ -1736,7 +1749,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4102.3833,5,4132.2368};
+				position[]={4094.7681,5,4127.3965};
 			};
 			side="Empty";
 			flags=4;
@@ -1751,7 +1764,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4077.9675,5,4133.7813};
+				position[]={4063.4543,5,4127.5576};
 			};
 			side="Empty";
 			flags=4;
@@ -1766,7 +1779,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4120.6997,5,4131.6143};
+				position[]={4128.0303,5,4128.1348};
 			};
 			side="Empty";
 			flags=4;
@@ -1781,7 +1794,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4080.6235,5,4083.9495};
+				position[]={4064.082,5,4094.0054};
 			};
 			side="Empty";
 			flags=4;
@@ -1796,7 +1809,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4102.2388,5,4082.6611};
+				position[]={4096.0581,5,4093.5146};
 			};
 			side="Empty";
 			flags=4;
@@ -1811,7 +1824,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4122.71,5,4083.5295};
+				position[]={4127.8394,5,4094.9392};
 			};
 			side="Empty";
 			flags=4;

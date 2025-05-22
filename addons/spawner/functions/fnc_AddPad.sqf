@@ -1,13 +1,12 @@
 #include "script_component.hpp"
 
 params ["_position","_object"];
-_groupHash = GVAR(padGroups);
 _displayNames = [];
 _lists = [];
 _breakdown = {
 	_displayNames pushBack _key;
 };
-[_groupHash, _breakdown] call CBA_fnc_hashEachPair;
+[GVAR(padGroups), _breakdown] call CBA_fnc_hashEachPair;
 _displayNames pushBack "CreateNewGroup";
 ["Create Pad", [
 		[
@@ -41,20 +40,14 @@ _displayNames pushBack "CreateNewGroup";
 			"_object"
 		];
 		if (_object == objNull) exitWith {hint "Must be placed on an Object";};
-
-		if ([_groupHash, _groupName] call CBA_fnc_hashHasKey) then {
-			_group = [_groupHash, _groupName] call CBA_fnc_hashGet;
+		if ([_object] call FUNC(findPadByObject) != "") exitWith {hint "This is already a pad"};
+		
+		if (_groupName != "CreateNewGroup") then {
+			_group = [GVAR(padGroups), _groupName] call CBA_fnc_hashGet;
+			[_name, _offset, _object, _groupName] call FUNC(createPad);
 		} else {
-			_groupName = call FUNC(createGroup);
-			_groupHash = GVAR(padGroups);
-			_group = [_groupHash, _groupName] call CBA_fnc_hashGet;
+			[_name, _offset, _object] call FUNC(createGroup);
 		};
-		_nameCheck = [GVAR(pads), _name] call CBA_fnc_hasGet;
-		if (!isNil _nameCheck) then {
-			hint "Name is not unique.";
-			_number = netId _object;
-			_name = format ["%1 %2", _name, _number];
-		};
-		[_name, [_object, _offset], _groupName] call FUNC(addPadToGroup);
+		
 	}, {}, [_position, _object]
 ] call zen_dialog_fnc_create;

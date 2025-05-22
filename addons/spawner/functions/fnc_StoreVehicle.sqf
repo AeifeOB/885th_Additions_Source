@@ -1,15 +1,18 @@
 #include "script_component.hpp"
 
-if (count GVAR(pads) == 0) then {
-	hint "Add a pad to continue.";
+_pads = [GVAR(padGroups), _groupName] call CBA_fnc_hashGet;
+
+if (count _pads == 0) exitWith {
+	systemChat "Add a pad to continue.";
 };
+
 ["Store Vehicle", [
 		[
 			"LIST", 
 			["Pads", "Select a Vehicle Pad."],
 			[
-				[GVAR(pads)] call CBA_fnc_hashValues,
-				[GVAR(pads)] call CBA_fnc_hashKeys,
+				[GVAR(_pads)] call CBA_fnc_hashValues,
+				[GVAR(_pads)] call CBA_fnc_hashKeys,
 				0
 			],
 			true

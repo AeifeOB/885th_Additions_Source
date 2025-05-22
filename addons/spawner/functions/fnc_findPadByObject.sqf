@@ -12,7 +12,7 @@ params ["_object"];
 _padList = GVAR(pads);
 _padName = "";
 _padSearch = {
-	//_key = objName_netId
+	//_key = padName
 	//_value = [groupDisplayName, object]
 	if (_value select 1 == _object) then {
 		_padName = _key;

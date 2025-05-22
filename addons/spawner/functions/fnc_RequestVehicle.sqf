@@ -1,6 +1,24 @@
 #include "script_component.hpp"
+/*
+Terminal List:
+	_name => [_object, _groupName, _vehicleList]
+Pad List: 
+	padName => [groupDisplayName, object]
+Group List:
+	groupDisplayName => [padName => [_object, _offset]]
+*/
+params ["_object"];
 
-if (count GVAR(pads) == 0) exitWith {
+_terminalName = [_object] call FUNC(findTerminal);
+_terminal = [GVAR(terminals), _terminalName] call CBA_fnc_hashGet;
+
+_object = _terminal select 0;
+_groupName = _terminal select 1;
+_vehicleList = _terminal select 2;
+
+_pads = [GVAR(padGroups), _groupName] call CBA_fnc_hashGet;
+
+if (count _pads == 0) exitWith {
 	systemChat "Add a pad to continue.";
 };
 
@@ -9,8 +27,8 @@ if (count GVAR(pads) == 0) exitWith {
 			"LIST", 
 			["Pads", "Select Spawn Location."],
 			[
-				[GVAR(pads)] call CBA_fnc_hashValues,
-				[GVAR(pads)] call CBA_fnc_hashKeys,
+				[_pads] call CBA_fnc_hashValues,
+				[_pads] call CBA_fnc_hashKeys,
 				0
 			],
 			true
@@ -19,8 +37,8 @@ if (count GVAR(pads) == 0) exitWith {
 			"LIST", 
 			["Vehicle", "Vehicle you'd like to spawn."], 
 			[
-				[GVAR(vehicleList)] call CBA_fnc_hashValues,
-				[GVAR(vehicleList)] call CBA_fnc_hashKeys,
+				[_vehicleList] call CBA_fnc_hashValues,
+				[_vehicleList] call CBA_fnc_hashKeys,
 				0
 			],
 			true

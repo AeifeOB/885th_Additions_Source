@@ -10,7 +10,7 @@ class CfgPatches
 		requiredAddons[] = {"CBA_main", "zen_custom_modules"};
 		requiredVersion = 1.62;
 		units[] = {
-			"VehicleTerminal"
+			"AIFE_VehicleTerminal"
 		};
 		weapons[] = {};
 	};
@@ -32,35 +32,20 @@ class CfgEditorSubcategories
 class CfgVehicles
 {
 	class RuggedTerminal_01_communications_F;
-	class VehicleTerminal : RuggedTerminal_01_communications_F 
+	class AIFE_VehicleTerminal : RuggedTerminal_01_communications_F 
 	{
-		class EventHandlers
-		{
-			init = "_this call AIFE_spawner_addTerminal;";
-		};
 		class UserActions
 		{
-			class Spawner_Access 
+			class Spawner_Initiate 
 			{
-				userActionID = 50;
-				displayName = "Spawn Vehicle";
+				userActionID = 51;
+				displayName = "Initialize Spawner";
 				radius = 5;
 				priority = 1;
 				onlyForPlayer = 1;
 				position = "laptop_lid";
-				condition = "true";
-				statement = "[] spawn AIFE_spawner_fnc_RequestVehicle;";
-			};
-			class Spawner_Clear 
-			{
-				userActionID = 50;
-				displayName = "Store Vehicle";
-				radius = 5;
-				priority = 1;
-				onlyForPlayer = 1;
-				position = "laptop_lid";
-				condition = "true";
-				statement = "[] spawn AIFE_spawner_fnc_StoreVehicle;";
+				condition = "!([this] call AIFE_spawner_fnc_terminalExists)";
+				statement = "[getPosASL this, this] spawn AIFE_spawner_fnc_addTerminal;";
 			};
 		};
 		ace_cargo_canLoad=0;
