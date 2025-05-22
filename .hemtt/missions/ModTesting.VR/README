@@ -1,0 +1,33 @@
+Run any of these script in the init box of any object in eden to activate it:
+
+[this] execVM "scripts\[ScriptName].sqf";
+
+For example I'd use this block on all starting area arsenals:
+
+[this, false, [0, 0, 0], 0] call ace_dragging_fnc_setDraggable;   
+[this, false, [0, 0, 0], 0] call ace_dragging_fnc_setCarryable;   
+clearMagazineCargo this;
+clearWeaponCargo this;
+clearItemCargoGlobal this;
+this allowdamage false;
+[this] execVM "Arsenal\InitArsenal.sqf";
+
+[this] execVM "VehicleSpawner\InitSpawner.sqf";
+
+Exclude any scripts that don't apply.
+
+To apply these scripts as zeus simply replace "this" with "_this".
+
+[_this] execVM "scripts\[ScriptName].sqf";
+--------------------------------------------------------------------------------------------
+
+The TireRepairer script is meant for use in a motor pool for more realistic vehicle repair. It requires a marker named "TireRepairZone" somewhere on the map - ideally near the object this script is applied to as a start button - where damaged tires are placed. Inside is a variable named _timeForRepair that determines the seconds it takes to repair a single tire.
+
+--------------------------------------------------------------------------------------------
+To add more pads to the vehicle spawner run the following code on the spawn terminal replacing pad_x with a new pad name and player with any object at the pad position.
+
+pad_x = createTrigger ["EmptyDetector", getPosASL player]; 
+pad_x setPosASL getPosASL player;
+pad_x setTriggerArea [5, 5, 0, true];
+systemChat format ["Spawned at %1", getPosASL pad_x];
+pads append [pad_x];
