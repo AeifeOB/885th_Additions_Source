@@ -24,7 +24,6 @@ author = "AifeSupport"
 url = "https://github.com/AeifeOB/885th_Additions_Source"
 
 [version]
-git_hash = 0
 major = 0
 minor = 2
 patch = 1
@@ -36,7 +35,7 @@ workshop = [
   "894678801",  # TFAR Beta
   "1779063631", # Zeus Enhanced 
   "623475643",  # 3den Enhanced
-  "2369477168", # Advanced Developer Tools
+  "3499977893", # Advanced Developer Tools
   "463939057",  # ACE
   "2515887728", # Crows EW
   "1645973522", # Intercept Minimal Dev

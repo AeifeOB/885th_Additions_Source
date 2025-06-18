@@ -37,8 +37,16 @@ if (hasInterface) then {
 
 if (isServer) then {
 	["RefreshSpawner", {
+		publicVariable QGVAR(terminals);
 		publicVariable QGVAR(pads);
 		publicVariable QGVAR(vehicleList);
+		_addTerminalActions = {
+			_object = _value select 0;
+			removeAllActions _object;
+			[_object] remoteExec ["AIFE_spawner_fnc_AddTerminalActions", 0];
+		};
+
+		[GVAR(terminals), _addTerminalActions] call CBA_fnc_hashEachPair;
 	}] call CBA_fnc_addEventHandler;
 };
 systemChat "Vehicle Spawner Started."

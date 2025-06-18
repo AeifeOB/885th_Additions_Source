@@ -14,6 +14,7 @@ PREP(createGroup);
 PREP(createPad);
 PREP(findPadByObject);
 PREP(addTerminal);
+PREP(AddTerminalActions);
 PREP(removeTerminal);
 PREP(findTerminal);
 PREP(terminalExists);
