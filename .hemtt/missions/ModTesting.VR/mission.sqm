@@ -12,14 +12,14 @@ class EditorData
 	};
 	class ItemIDProvider
 	{
-		nextID=26;
+		nextID=27;
 	};
 	class Camera
 	{
-		pos[]={4097.998,46.952221,4041.7092};
-		dir[]={0.024396967,-0.56699735,0.82335824};
-		up[]={0.016793355,0.82371962,0.56674862};
-		aside[]={0.99956131,0,-0.029618049};
+		pos[]={4098.5679,14.781474,4094.9446};
+		dir[]={-0.1684109,-0.51476252,0.8406291};
+		up[]={-0.10111781,0.85733283,0.5047332};
+		aside[]={0.98051667,7.4505806e-09,0.19643585};
 	};
 };
 binarizationWanted=0;
@@ -1590,7 +1590,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="";
+							value="zeus";
 						};
 					};
 				};
@@ -1721,22 +1721,99 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=1;
+				items=2;
 				class Item0
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={4097.7236,5.0014391,4106.3428};
+						position[]={4097.7241,5.0014391,4106.3428};
 					};
 					side="West";
 					flags=7;
 					class Attributes
 					{
+						name="zeus";
 						isPlayer=1;
 					};
 					id=16;
 					type="B_Soldier_A_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									singleType="STRING";
+									value="Male06ENG";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									singleType="SCALAR";
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=2;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4095.052,5.0014391,4105.624};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						isPlayable=1;
+					};
+					id=26;
+					type="B_Soldier_A_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									singleType="STRING";
+									value="Male10ENG";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									singleType="SCALAR";
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=2;
+					};
 				};
 			};
 			class Attributes

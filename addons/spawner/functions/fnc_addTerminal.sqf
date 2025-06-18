@@ -7,6 +7,11 @@ if (_object == objNull) exitWith {
 };
 
 _groupHash = GVAR(padGroups);
+
+if ([_groupHash] call CBA_fnc_hashSize == 0) then {
+	hint "Please add pads first.";
+};
+
 _displayNames = [];
 _lists = [];
 _breakdown = {
@@ -69,43 +74,6 @@ _breakdown = {
 
 		[GVAR(terminals), _name, [_object, _groupName, _vehicleList]] call CBA_fnc_hashSet;
 		publicVariable QGVAR(terminals);
-		
-		_object addAction
-		[
-			"Request Vehicle",	// title
-			{
-				params ["_target", "_caller", "_actionId", "_arguments"]; // script
-				[_target] spawn AIFE_spawner_fnc_RequestVehicle;
-			},
-			nil,		// arguments
-			1.5,		// priority
-			true,		// showWindow
-			true,		// hideOnUse
-			"",			// shortcut
-			"true",		// condition
-			5,			// radius
-			false,		// unconscious
-			"",			// selection
-			""			// memoryPoint
-		];
-		
-		_object addAction
-		[
-			"Store Vehicle",	// title
-			{
-				params ["_target", "_caller", "_actionId", "_arguments"]; // script
-				[_target] spawn AIFE_spawner_fnc_StoreVehicle;
-			},
-			nil,		// arguments
-			1.5,		// priority
-			true,		// showWindow
-			true,		// hideOnUse
-			"",			// shortcut
-			"true",		// condition
-			5,			// radius
-			false,		// unconscious
-			"",			// selection
-			""			// memoryPoint
-		];
+		//[_object] remoteExec ["AIFE_spawner_fnc_AddTerminalActions", 0];
 	}, {}, [_object]
 ] call zen_dialog_fnc_create;
