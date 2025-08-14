@@ -27,8 +27,5 @@ class CfgEditorSubcategories
 		displayName = "Vehicle Spawner";
 	};
 };
-class CfgVehicles
-{
-	
-};
 #include "CfgEventhandlers.hpp"
+#include "CfgVehicles.hpp"

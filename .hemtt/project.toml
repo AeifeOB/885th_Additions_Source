@@ -26,7 +26,7 @@ url = "https://github.com/AeifeOB/885th_Additions_Source"
 [version]
 major = 0
 minor = 2
-patch = 1
+patch = 2
 build = 11
 
 [hemtt.launch.default]
