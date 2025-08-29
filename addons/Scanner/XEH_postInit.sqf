@@ -19,6 +19,7 @@ if (isServer) then {
 
 // if not a player we don't do anything
 if (!hasInterface) exitWith {}; 
+if (is3DEN) exitWith {};
 if (GVAR(isActive)) then {
 	systemChat "Starting Creation...";
 	call FUNC(createDialogs);

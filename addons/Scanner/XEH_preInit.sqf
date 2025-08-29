@@ -35,7 +35,8 @@ GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
 	"CHECKBOX", 
 	["Active", "Enable or disable this feature."],
 	["Aife's Signal Scanner", "1. Mod"],
-	true,
+	[],
+	1,
 	{},
 	true
 ] call CBA_fnc_addSetting;
@@ -46,7 +47,7 @@ GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
 	["Icon Scale", "Scales the icon."],
 	["Aife's Signal Scanner", "2. Scanner"],
 	[0.01, 0.5, 0.1, 2],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -56,7 +57,7 @@ GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
 	["Text Scale", "Scales the text."],
 	["Aife's Signal Scanner", "2. Scanner"],
 	[1, 100, 50, 2],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -66,7 +67,7 @@ GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
 	["Hide Icon Distance", "Minimum distance that the icon hides itself at (in meters)."],
 	["Aife's Signal Scanner", "2. Scanner"],
 	[0, 100, 10, 0],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -76,7 +77,7 @@ GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
 	["Rotation Rate", "Rate that scanner icons rotate (cosmetic)."],
 	["Aife's Signal Scanner", "2. Scanner"],
 	[-100, 100, 50, 0],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -86,7 +87,7 @@ GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
 	["Channel One Color", "Color for primary scanner frequency."],
 	["Aife's Signal Scanner", "2. Scanner"],
 	[0, 0, 1, 1],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -96,7 +97,7 @@ GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
 	["Channel Two Color", "Color for alternate scanner frequency."],
 	["Aife's Signal Scanner", "2. Scanner"],
 	[1, 0, 0, 1],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -106,8 +107,19 @@ GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
 	["Public Signal Color", "Color for civilian scanner frequencies."],
 	["Aife's Signal Scanner", "2. Scanner"],
 	[1, 1, 0, 1],
-	false,
+	2,
 	{}
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_scanner_jammable", 
+	"CHECKBOX", 
+	["Jammable", "Allows radio jammers to block signals."],
+	["Aife's Signal Scanner", "1. Mod"],
+	[],
+	1,
+	{},
+	false
 ] call CBA_fnc_addSetting;
 
 [

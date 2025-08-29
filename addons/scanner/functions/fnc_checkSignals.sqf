@@ -1,6 +1,7 @@
 #include "script_component.hpp"
 
 if (!GVAR(mainActive)) exitWith{};
+if (GVAR(jammable) && player call FUNC(isJammed)) exitWith {};
 
 // cam position
 private _camPos = positionCameraToWorld [0,0,0];
@@ -12,7 +13,9 @@ private _beacons = crowsEW_spectrum_beacons;
 
 	private _dist = _camPos distance _unit;
 	if (_dist > _range) then {continue;};
-	
+	if (GVAR(jammable) && _unit call FUNC(isJammed)) then {
+		continue;
+	};
 	private _color = [0,0,0];
 	switch (floor(10 * _freq)/10) do {
 		case GVAR(freq): {

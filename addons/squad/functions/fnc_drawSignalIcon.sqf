@@ -22,7 +22,7 @@ if (_unit isKindOf "CAManBase") then {
 	_pos = [_pos select 0, _pos select 1, _zOffset];
 };
 
-private _txt = _unit getVariable ["AIFE_squad_customName",name _unit];
+private _txt = name _unit;
 private _textSize = GVAR(text_scale) / 1000;
 
 drawIcon3D [

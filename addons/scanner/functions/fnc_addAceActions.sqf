@@ -77,4 +77,5 @@ _parentAction = [
 	{true},
 	_insertChildren
 ] call ace_interact_menu_fnc_createAction;
+
 ["CAManBase", 1, ["ACE_SelfActions"], _parentAction, true] call ace_interact_menu_fnc_addActionToClass;

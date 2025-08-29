@@ -11,6 +11,9 @@ if !(_hasZen) exitWith
 	diag_log "******CBA and/or ZEN not detected. They are required.";
 };
 
+if (isServer) then {};
+if (!hasInterface) exitWith {};
+
 // Visual Settings
 GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 [
@@ -19,7 +22,7 @@ GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 	["Active", "Enable or disable this feature."],
 	["Aife's Squad Markers", "1. Mod"],
 	[],
-	0,
+	1,
 	{},
 	true
 ] call CBA_fnc_addSetting;
@@ -30,7 +33,7 @@ GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 	["Icon Scale", "Scales the squad icon."],
 	["Aife's Squad Markers", "2. Marker"],
 	[0.01, 1.0, 0.5, 2],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -40,7 +43,7 @@ GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 	["Text Scale", "Scales the text."],
 	["Aife's Squad Markers", "2. Marker"],
 	[1, 100, 20, 2],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -50,7 +53,7 @@ GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 	["Hide Icon Distance", "Minimum distance that squad icons hides themselves (in meters)."],
 	["Aife's Squad Markers", "2. Marker"],
 	[0, 100, 10, 0],
-	false,
+	2,
 	{}
 ] call CBA_fnc_addSetting;
 
@@ -62,13 +65,11 @@ if !(_hasCrows) then {
 		"AIFE_squad_jammable", 
 		"CHECKBOX", 
 		["Jammable", "Allows radio jammers to block squad markers."],
-		["Aife's Squad Markers", "3. E-War"],
+		["Aife's Squad Markers", "1. Mod"],
 		[],
 		1,
 		{},
 		false
 	] call CBA_fnc_addSetting;
 };
-if (GVAR(isActive)) then {
-	call FUNC(init);
-};
+if (is3DEN) exitWith {};
