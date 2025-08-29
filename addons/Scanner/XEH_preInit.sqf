@@ -5,17 +5,18 @@ ADDON = true;
 
 // check for zen 
 private _hasZen = isClass (configFile >> "CfgPatches" >> "zen_custom_modules");
-private _hasCrows = isClass (configFile >> "CfgPatches" >> "crowEW_main");
+private _hasCrows = isClass (configFile >> "CfgPatches" >> "crowsEW_main");
 if !(_hasZen) exitWith
 {
 	diag_log "******CBA and/or ZEN not detected. They are required.";
 };
-if !(_hasCrows) exitWith {
+if !(_hasCrows) exitWith 
+{
 	diag_log "Crow's Electronic Warfare not found. It is required for the scanner.";
 };
 
 // Sensor states
-GVAR(isActive) = false;
+GVAR(mainActive) = false;
 GVAR(altActive) = false;
 GVAR(civActive) = false;
 
@@ -27,15 +28,88 @@ GVAR(minfreq) = 30.0;
 GVAR(maxfreq) = 300.0;
 
 // Visual Settings
-GVAR(scale) = 0.1;
-GVAR(minimum) = 10;
-GVAR(colorOne) = [0,0,1,1];
-GVAR(colorTwo) = [1,0,0,1];
-GVAR(colorThree) = [1,1,0,1];
-GVAR(rotationRate) = 50;
 GVAR(icon) = "z\AIFE\addons\scanner\textures\markerIcon.paa";
-call FUNC(createDialogs);
-call FUNC(addAceActions);
+
+[
+	"AIFE_scanner_isActive", 
+	"CHECKBOX", 
+	["Active", "Enable or disable this feature."],
+	["Aife's Signal Scanner", "1. Mod"],
+	true,
+	{},
+	true
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_scanner_scale", 
+	"SLIDER", 
+	["Icon Scale", "Scales the icon."],
+	["Aife's Signal Scanner", "2. Scanner"],
+	[0.01, 0.5, 0.1, 2],
+	false,
+	{}
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_scanner_text_scale", 
+	"SLIDER", 
+	["Text Scale", "Scales the text."],
+	["Aife's Signal Scanner", "2. Scanner"],
+	[1, 100, 50, 2],
+	false,
+	{}
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_scanner_minimum", 
+	"SLIDER", 
+	["Hide Icon Distance", "Minimum distance that the icon hides itself at (in meters)."],
+	["Aife's Signal Scanner", "2. Scanner"],
+	[0, 100, 10, 0],
+	false,
+	{}
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_scanner_rotationRate", 
+	"SLIDER", 
+	["Rotation Rate", "Rate that scanner icons rotate (cosmetic)."],
+	["Aife's Signal Scanner", "2. Scanner"],
+	[-100, 100, 50, 0],
+	false,
+	{}
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_scanner_colorOne", 
+	"COLOR", 
+	["Channel One Color", "Color for primary scanner frequency."],
+	["Aife's Signal Scanner", "2. Scanner"],
+	[0, 0, 1, 1],
+	false,
+	{}
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_scanner_colorTwo", 
+	"COLOR", 
+	["Channel Two Color", "Color for alternate scanner frequency."],
+	["Aife's Signal Scanner", "2. Scanner"],
+	[1, 0, 0, 1],
+	false,
+	{}
+] call CBA_fnc_addSetting;
+
+[
+	"AIFE_scanner_colorThree", 
+	"COLOR", 
+	["Public Signal Color", "Color for civilian scanner frequencies."],
+	["Aife's Signal Scanner", "2. Scanner"],
+	[1, 1, 0, 1],
+	false,
+	{}
+] call CBA_fnc_addSetting;
+
 [
 	"Aife's Scanner", 
 	"ActiveScan", 
@@ -44,12 +118,12 @@ call FUNC(addAceActions);
 		"Toggles the Active Scanning function."
 	], 
 	{
-		if (GVAR(isActive)) then {
+		if (GVAR(mainActive)) then {
 			call FUNC(removeEventHandler);
 		} else {
 			call FUNC(addEventHandler);
 		};
-		GVAR(isActive) = !GVAR(isActive);
+		GVAR(mainActive) = !GVAR(mainActive);
 	}, 
 	"", 
 	[DIK_INSERT, [false, false, false]]
@@ -74,7 +148,7 @@ call FUNC(addAceActions);
 		"Search Scanner", 
 		"Broad-spectrum scan checks all frequencies in a range."
 	], 
-	{hint "Not Implemented."},//GVAR(pingDialog), 
+	GVAR(pingDialog),
 	"",
 	[DIK_INSERT, [false, true, false]]
 ] call CBA_fnc_addKeybind;
@@ -98,74 +172,3 @@ call FUNC(addAceActions);
 	}, 
 	""
 ] call CBA_fnc_addKeybind;
-
-[
-	"AIFE_Scanner_Scale_Setting", 
-	"SLIDER", 
-	["Icon Scale", "Scales the icon."],
-	["Aife's Zeus Tools", "Scanner"],
-	[0.01, 0.5, 0.1, 2],
-	false,
-	{ GVAR(scale) = (_this); }
-] call CBA_fnc_addSetting;
-
-[
-	"AIFE_Scanner_Text_Scale_Setting", 
-	"SLIDER", 
-	["Text Scale", "Scales the text."],
-	["Aife's Zeus Tools", "Scanner"],
-	[1, 100, 50, 2],
-	false,
-	{ GVAR(text_scale) = (_this); }
-] call CBA_fnc_addSetting;
-
-[
-	"AIFE_Scanner_Minimum_Setting", 
-	"SLIDER", 
-	["Hide Icon Distance", "Minimum distance that the icon hides itself at (in meters)."],
-	["Aife's Zeus Tools", "Scanner"],
-	[0, 100, 10, 0],
-	false,
-	{ GVAR(minimum) = (_this); }
-] call CBA_fnc_addSetting;
-
-[
-	"AIFE_Scanner_Rotation_Setting", 
-	"SLIDER", 
-	["Rotation Rate", "Rate that scanner icons rotate (cosmetic)."],
-	["Aife's Zeus Tools", "Scanner"],
-	[-100, 100, 50, 0],
-	false,
-	{ GVAR(rotationRate) = (_this); }
-] call CBA_fnc_addSetting;
-
-[
-	"AIFE_Scanner_ColorOne_Setting", 
-	"COLOR", 
-	["Channel One Color", "Color for primary scanner frequency."],
-	["Aife's Zeus Tools", "Scanner"],
-	[0, 0, 1, 1],
-	false,
-	{ GVAR(colorOne) = (_this); }
-] call CBA_fnc_addSetting;
-
-[
-	"AIFE_Scanner_ColorTwo_Setting", 
-	"COLOR", 
-	["Channel Two Color", "Color for alternate scanner frequency."],
-	["Aife's Zeus Tools", "Scanner"],
-	[1, 0, 0, 1],
-	false,
-	{ GVAR(colorTwo) = (_this); }
-] call CBA_fnc_addSetting;
-
-[
-	"AIFE_Scanner_ColorThree_Setting", 
-	"COLOR", 
-	["Public Signal Color", "Color for civilian scanner frequencies."],
-	["Aife's Zeus Tools", "Scanner"],
-	[1, 1, 0, 1],
-	false,
-	{ GVAR(colorThree) = (_this); }
-] call CBA_fnc_addSetting;
-

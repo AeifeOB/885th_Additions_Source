@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-if (!GVAR(isActive)) exitWith{};
+if (!GVAR(mainActive)) exitWith{};
 
 // cam position
 private _camPos = positionCameraToWorld [0,0,0];

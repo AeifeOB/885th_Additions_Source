@@ -21,21 +21,21 @@ class CfgVehicles
 			class Anything;
 		};
 	};
-	
-	class GVAR(moduleSpawnPad): Module_F
+	class ACE_Module;
+	class GVAR(moduleSpawnPad): ACE_Module
 	{
+		author = "AifeSupport";
 		scope = 2;
 		displayName = "Spawn Pad";
 		icon = "\A3\ui_f\data\map\markers\nato\respawn_motor_ca.paa";
-		vehicleClass = "Modules";
 		category = "Aife's Spawner";
-		function = QFUNC(addPad);
+		//function = QFUNC(addPad);
 		functionPriority = 1;
 		isGlobal = 2;
 		isTriggerActivated = 0;
 		isDisposable = 1;
 		is3DEN = 0;
-
+		/*
 		class Attributes: AttributesBase 
 		{
 			// Arguments shared by specific module type (have to be mentioned in order to be present):
@@ -87,6 +87,7 @@ class CfgVehicles
 				};
 			};
 		};
+		*/
 	};
 
 	class GVAR(moduleSpawner): Module_F
@@ -94,10 +95,9 @@ class CfgVehicles
 		// Standard object definitions:
 		scope = 2;										// Editor visibility; 2 will show it in the menu, 1 will hide it.
 		displayName = "Add Spawner";				// Name displayed in the menu
-		icon = ;	// Map icon. Delete this entry to use the default icon.
 		vehicleClass = "Modules";
 		category = "Aife's Spawner";
-		function = QFUNC(addTerminal);	// Name of function triggered once conditions are met
+		//function = QFUNC(addTerminal);	// Name of function triggered once conditions are met
 		functionPriority = 1;				// Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
 		isGlobal = 2;						// 0 for server only execution, 1 for global execution, 2 for persistent global execution
 		isTriggerActivated = 0;				// 1 for module waiting until all synced triggers are activated

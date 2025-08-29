@@ -8,7 +8,7 @@ class CfgPatches
 		author = "AifeSupport";
 		url = "https://github.com/AeifeOB/885th_Additions_Source";
 		requiredAddons[] = {"CBA_main", "zen_custom_modules"};
-		requiredVersion = 1.62;
+		requiredVersion = 2.02;
 		units[] = {};
 		weapons[] = {};
 	};

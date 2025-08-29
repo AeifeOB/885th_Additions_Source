@@ -1,6 +1,6 @@
 #define MAINPREFIX z
 #define PREFIX AIFE
-#define COMPONENT spawner
+#define COMPONENT em
 #define DISABLE_COMPILE_CACHE
 #define DEBUG_MODE_FULL
 
