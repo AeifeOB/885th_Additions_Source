@@ -22,7 +22,7 @@ GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 	["Active", "Enable or disable this feature."],
 	["Aife's Squad Markers", "1. Mod"],
 	[],
-	1,
+	0,
 	{},
 	true
 ] call CBA_fnc_addSetting;

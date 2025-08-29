@@ -21,8 +21,6 @@ if (isServer) then {
 if (!hasInterface) exitWith {}; 
 if (is3DEN) exitWith {};
 if (GVAR(isActive)) then {
-	systemChat "Starting Creation...";
 	call FUNC(createDialogs);
 	call FUNC(addAceActions);
-	systemChat "Creating Options...";
 };
