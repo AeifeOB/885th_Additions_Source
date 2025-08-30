@@ -4,3 +4,5 @@
 	systemChat _name;
 }
 forEach nearestObjects[player, [ "Man", "Car", "Tank", "Plane", "Helicopter", "Boat", "AllVehicles" ], 1000];
+
+rewrite pad module as group module with multiple sync'd pads
