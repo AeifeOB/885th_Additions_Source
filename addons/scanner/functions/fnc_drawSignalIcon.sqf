@@ -31,8 +31,8 @@ drawIcon3D [
 	1, 
 	_textSize, 
 	"RobotoCondensedBold", 
-	"left", 
+	"center", 
 	true,
 	0,
-	-5
+	0
 ];

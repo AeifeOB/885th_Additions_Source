@@ -74,6 +74,6 @@ _breakdown = {
 
 		[GVAR(terminals), _name, [_object, _groupName, _vehicleList]] call CBA_fnc_hashSet;
 		publicVariable QGVAR(terminals);
-		//[_object] remoteExec ["AIFE_spawner_fnc_AddTerminalActions", 0];
+		[_object] remoteExec ["AIFE_spawner_fnc_AddTerminalActions", 0, true];
 	}, {}, [_object]
 ] call zen_dialog_fnc_create;

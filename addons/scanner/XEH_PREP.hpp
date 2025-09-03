@@ -5,3 +5,4 @@ PREP(addEventHandler);
 PREP(removeEventHandler);
 PREP(createDialogs);
 PREP(addAceActions);
+PREP(isJammed);

@@ -1,0 +1,8 @@
+{
+	_className = typeOf _x;
+	_name = getText(configFile >> "CfgVehicles" >> _className >> "displayName");
+	systemChat _name;
+}
+forEach nearestObjects[player, [ "Man", "Car", "Tank", "Plane", "Helicopter", "Boat", "AllVehicles" ], 1000];
+
+rewrite pad module as group module with multiple sync'd pads

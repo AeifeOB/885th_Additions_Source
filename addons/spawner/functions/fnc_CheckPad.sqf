@@ -3,7 +3,7 @@ params ["_pad"];
 
 _clear = true;
 _trig = createTrigger ["EmptyDetector", getPos _pad];
-_trig setTriggerArea [10,10,10,true];
+_trig setTriggerArea [10,10,0,true,10];
 _objects = nearestTerrainObjects [_pad, [], 10];
 _objects deleteAt (_objects find _pad);
 if (count _objects > 0) then {

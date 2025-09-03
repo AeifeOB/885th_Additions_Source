@@ -7,11 +7,11 @@ _insertChildren = {
     // Add children to this action
     private _actions = [];
 	private _childCondition ={
-		!GVAR(isActive)
+		!GVAR(mainActive)
 	};
 	private _childStatement = {
 		call FUNC(addEventHandler);
-		GVAR(isActive) = !GVAR(isActive);
+		GVAR(mainActive) = !GVAR(mainActive);
 	};
 	private _action = [
 		"ActivateSensors", 
@@ -24,11 +24,11 @@ _insertChildren = {
 	_actions pushBack [_action, [], _target]; 
 
 	_childCondition = {
-		GVAR(isActive)
+		GVAR(mainActive)
 	};
 	_childStatement = {
 		call FUNC(removeEventHandler);
-		GVAR(isActive) = !GVAR(isActive);
+		GVAR(mainActive) = !GVAR(mainActive);
 	};
 	_action = [
 		"DeactivateSensors", 
@@ -77,4 +77,5 @@ _parentAction = [
 	{true},
 	_insertChildren
 ] call ace_interact_menu_fnc_createAction;
+
 ["CAManBase", 1, ["ACE_SelfActions"], _parentAction, true] call ace_interact_menu_fnc_addActionToClass;

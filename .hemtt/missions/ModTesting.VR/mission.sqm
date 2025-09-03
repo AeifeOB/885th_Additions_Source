@@ -12,14 +12,14 @@ class EditorData
 	};
 	class ItemIDProvider
 	{
-		nextID=27;
+		nextID=72;
 	};
 	class Camera
 	{
-		pos[]={4098.5679,14.781474,4094.9446};
-		dir[]={-0.1684109,-0.51476252,0.8406291};
-		up[]={-0.10111781,0.85733283,0.5047332};
-		aside[]={0.98051667,7.4505806e-09,0.19643585};
+		pos[]={4104.9629,25.738134,4062.533};
+		dir[]={-0.19210491,-0.39635739,0.89777321};
+		up[]={-0.082934871,0.9180963,0.38758358};
+		aside[]={0.97786385,0,0.20924264};
 	};
 };
 binarizationWanted=0;
@@ -29,13 +29,14 @@ addons[]=
 	"A3_Modules_F_Curator_Curator",
 	"A3_Modules_F_Multiplayer",
 	"A3_Characters_F",
-	"A3_Structures_F_Mil_Helipads"
+	"A3_Structures_F_Mil_Helipads",
+	"AIFE_em"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=4;
+		items=5;
 		class Item0
 		{
 			className="A3_Modules_F_Curator";
@@ -63,6 +64,13 @@ class AddonsMetaData
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
+		};
+		class Item4
+		{
+			className="AIFE_em";
+			name="Aife's Editor Modules";
+			author="AifeSupport";
+			url="https://github.com/AeifeOB/885th_Additions_Source";
 		};
 	};
 };
@@ -314,7 +322,7 @@ class CustomAttributes
 								singleType="ARRAY";
 								class value
 								{
-									items=31;
+									items=33;
 									class Item0
 									{
 										class data
@@ -563,6 +571,22 @@ class CustomAttributes
 											value="tfar_setting_defaultfrequencies_lr_independent";
 										};
 									};
+									class Item31
+									{
+										class data
+										{
+											singleType="STRING";
+											value="aife_squad_active";
+										};
+									};
+									class Item32
+									{
+										class data
+										{
+											singleType="STRING";
+											value="aife_scanner_minimum";
+										};
+									};
 								};
 							};
 						};
@@ -573,7 +597,7 @@ class CustomAttributes
 								singleType="ARRAY";
 								class value
 								{
-									items=31;
+									items=33;
 									class Item0
 									{
 										class data
@@ -1411,6 +1435,60 @@ class CustomAttributes
 											};
 										};
 									};
+									class Item31
+									{
+										class data
+										{
+											singleType="ARRAY";
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														singleType="BOOL";
+														value=1;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														singleType="SCALAR";
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item32
+									{
+										class data
+										{
+											singleType="ARRAY";
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														singleType="SCALAR";
+														value=0;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														singleType="SCALAR";
+														value=1;
+													};
+												};
+											};
+										};
+									};
 								};
 							};
 						};
@@ -1569,7 +1647,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=9;
+		items=10;
 		class Item0
 		{
 			dataType="Logic";
@@ -1826,7 +1904,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4094.7681,5,4127.3965};
+				position[]={4094.7681,5,4127.396};
 			};
 			side="Empty";
 			flags=4;
@@ -1841,12 +1919,13 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4063.4543,5,4127.5576};
+				position[]={4063.4541,5,4127.5581};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				description="Test";
 			};
 			id=21;
 			type="Land_HelipadCircle_F";
@@ -1911,21 +1990,134 @@ class Mission
 			id=25;
 			type="Land_HelipadCircle_F";
 		};
+		class Item9
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={4101.0449,5,4106.9512};
+			};
+			id=71;
+			type="AIFE_em_modulePads";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="AIFE_em_addPad_name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="""Pad""";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="AIFE_em_addPad_offset";
+					expression="_this setVariable ['PadOffset',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="AIFE_em_addPad_groupName";
+					expression="_this setVariable ['GroupName',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="First Group";
+						};
+					};
+				};
+				nAttributes=3;
+			};
+		};
 	};
 	class Connections
 	{
 		class LinkIDProvider
 		{
-			nextID=1;
+			nextID=7;
 		};
 		class Links
 		{
-			items=1;
+			items=7;
 			class Item0
 			{
 				linkID=0;
 				item0=2;
 				item1=16;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item1
+			{
+				linkID=1;
+				item0=21;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item2
+			{
+				linkID=2;
+				item0=20;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item3
+			{
+				linkID=3;
+				item0=22;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item4
+			{
+				linkID=4;
+				item0=23;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item5
+			{
+				linkID=5;
+				item0=24;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item6
+			{
+				linkID=6;
+				item0=25;
+				item1=71;
 				class CustomData
 				{
 					type="Sync";
