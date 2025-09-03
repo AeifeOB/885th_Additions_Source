@@ -55,7 +55,7 @@ class CfgVehicles
 		icon="";
 		vehicleClass="Modules";
 		category="AIFE_modules";
-		function="AIFE_em_fnc_addPad";
+		function="AIFE_em_fnc_createPadGroup";
 		functionPriority=1;
 		isGlobal=0;
 		isTriggerActivated=0;
@@ -71,15 +71,15 @@ class CfgVehicles
 			{
 				property = QGVAR(addPad_groupName);
 				displayName = "Group Name";
-				tooltip = "Pad Group Name";
+				tooltip = "Unique name for this group of spawn pads.";
 				typeName = "STRING";
 				defaultValue = "";
 			};
 			class Name: Edit
 			{
 				property = QGVAR(addPad_name);
-				displayName = "Pad Nam Pattern";	// Argument label
-				tooltip = "Base name to give each spawn pad.";
+				displayName = "Pad Names";	// Argument label
+				tooltip = "Name each pad, in quotes, separated by commas. This assigns names in the order pads are sync'd";
 				typeName = "STRING";
 				// Value type, can be "NUMBER", "STRING" or "BOOL"
 				defaultValue = "";

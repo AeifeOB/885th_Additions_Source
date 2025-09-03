@@ -12,14 +12,14 @@ class EditorData
 	};
 	class ItemIDProvider
 	{
-		nextID=71;
+		nextID=72;
 	};
 	class Camera
 	{
-		pos[]={4115.0073,17.554173,4099.8125};
-		dir[]={0.091788091,-0.47913221,0.87293553};
-		up[]={0.050104026,0.87774187,0.47650585};
-		aside[]={0.99452096,5.3318217e-08,-0.104573};
+		pos[]={4104.9629,25.738134,4062.533};
+		dir[]={-0.19210491,-0.39635739,0.89777321};
+		up[]={-0.082934871,0.9180963,0.38758358};
+		aside[]={0.97786385,0,0.20924264};
 	};
 };
 binarizationWanted=0;
@@ -1647,7 +1647,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=11;
+		items=10;
 		class Item0
 		{
 			dataType="Logic";
@@ -1904,7 +1904,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4094.7681,5,4127.3965};
+				position[]={4094.7681,5,4127.396};
 			};
 			side="Empty";
 			flags=4;
@@ -1919,12 +1919,13 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4063.4543,5,4127.5576};
+				position[]={4063.4541,5,4127.5581};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				description="Test";
 			};
 			id=21;
 			type="Land_HelipadCircle_F";
@@ -1994,10 +1995,10 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={4105.228,5,4128.5469};
+				position[]={4101.0449,5,4106.9512};
 			};
-			id=69;
-			type="AIFE_em_modulePad";
+			id=71;
+			type="AIFE_em_modulePads";
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2009,7 +2010,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="Pad";
+							value="""Pad""";
 						};
 					};
 				};
@@ -2029,66 +2030,13 @@ class Mission
 				class Attribute2
 				{
 					property="AIFE_em_addPad_groupName";
-					expression="_this setVariable ['GName',_value,true];";
+					expression="_this setVariable ['GroupName',_value,true];";
 					class Value
 					{
 						class data
 						{
 							singleType="STRING";
-							value="Group 1";
-						};
-					};
-				};
-				nAttributes=3;
-			};
-		};
-		class Item10
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={4136.1738,5,4128.105};
-			};
-			id=70;
-			type="AIFE_em_modulePad";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="AIFE_em_addPad_name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							singleType="STRING";
-							value="Pad 2";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="AIFE_em_addPad_offset";
-					expression="_this setVariable ['PadOffset',_value,true];";
-					class Value
-					{
-						class data
-						{
-							singleType="SCALAR";
-							value=0;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="AIFE_em_addPad_groupName";
-					expression="_this setVariable ['GName',_value,true];";
-					class Value
-					{
-						class data
-						{
-							singleType="STRING";
-							value="Group 1";
+							value="First Group";
 						};
 					};
 				};
@@ -2100,11 +2048,11 @@ class Mission
 	{
 		class LinkIDProvider
 		{
-			nextID=3;
+			nextID=7;
 		};
 		class Links
 		{
-			items=3;
+			items=7;
 			class Item0
 			{
 				linkID=0;
@@ -2118,8 +2066,8 @@ class Mission
 			class Item1
 			{
 				linkID=1;
-				item0=69;
-				item1=20;
+				item0=21;
+				item1=71;
 				class CustomData
 				{
 					type="Sync";
@@ -2128,8 +2076,48 @@ class Mission
 			class Item2
 			{
 				linkID=2;
-				item0=70;
-				item1=22;
+				item0=20;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item3
+			{
+				linkID=3;
+				item0=22;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item4
+			{
+				linkID=4;
+				item0=23;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item5
+			{
+				linkID=5;
+				item0=24;
+				item1=71;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item6
+			{
+				linkID=6;
+				item0=25;
+				item1=71;
 				class CustomData
 				{
 					type="Sync";

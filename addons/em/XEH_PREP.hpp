@@ -1,2 +1,2 @@
-PREP(addPad);
+PREP(addGroup);
 PREP(createPadGroup);

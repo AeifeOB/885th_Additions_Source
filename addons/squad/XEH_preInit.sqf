@@ -12,7 +12,6 @@ if !(_hasZen) exitWith
 };
 
 if (isServer) then {};
-if (!hasInterface) exitWith {};
 
 // Visual Settings
 GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
@@ -26,6 +25,24 @@ GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 	{},
 	true
 ] call CBA_fnc_addSetting;
+
+if !(_hasCrows) then {
+	diag_log "Crow's Electronic Warfare not found. It is required for the advanced Squad Radar Settings.";
+	GVAR(jammable) = false;
+} else {
+	[
+		"AIFE_squad_jammable", 
+		"CHECKBOX", 
+		["Jammable", "Allows radio jammers to block squad markers."],
+		["Aife's Squad Markers", "1. Mod"],
+		[],
+		1,
+		{},
+		false
+	] call CBA_fnc_addSetting;
+};
+
+if (!hasInterface) exitWith {};
 
 [
 	"AIFE_squad_scale", 
@@ -109,19 +126,4 @@ GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 	false
 ] call CBA_fnc_addSetting;
 
-if !(_hasCrows) then {
-	diag_log "Crow's Electronic Warfare not found. It is required for the advanced Squad Radar Settings.";
-	GVAR(jammable) = false;
-} else {
-	[
-		"AIFE_squad_jammable", 
-		"CHECKBOX", 
-		["Jammable", "Allows radio jammers to block squad markers."],
-		["Aife's Squad Markers", "1. Mod"],
-		[],
-		1,
-		{},
-		false
-	] call CBA_fnc_addSetting;
-};
 if (is3DEN) exitWith {};
