@@ -13,12 +13,6 @@ if !(_hasCrows) exitWith {
 	diag_log "Crow's Electronic Warfare not found. It is required.";
 };
 
-if (isServer) then {
-};
-// if not a player we don't do anything
-if (!hasInterface) exitWith {}; 
-if (is3DEN) exitWith {};
-
-if (GVAR(isActive)) then {
+if (!isServer) then {
 	call FUNC(init);
 };

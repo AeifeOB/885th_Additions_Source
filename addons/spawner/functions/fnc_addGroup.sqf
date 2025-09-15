@@ -11,7 +11,7 @@ if (isNil "AIFE_spawner_padGroups") then {
 	waitUntil {!isNil "AIFE_spawner_padGroups"};
 };
 _group = [] call CBA_fnc_hashCreate;
-[AIFE_spawner_padGroups, _groupName, _group] call CBA_fnc_hashSet;
+[GVAR(padGroups), _groupName, _group] call CBA_fnc_hashSet;
 publicVariable "AIFE_spawner_padGroups";
 
-_groupExists = [AIFE_spawner_padGroups, _groupName] call CBA_fnc_hashHasKey;
+_groupExists = [GVAR(padGroups), _groupName] call CBA_fnc_hashHasKey;

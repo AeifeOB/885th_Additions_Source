@@ -19,3 +19,8 @@ PREP(removeTerminal);
 PREP(findTerminal);
 PREP(terminalExists);
 PREP(getGroupListByPad);
+PREP(addGroup);
+PREP(assignTerminal);
+PREP(createPadGroup);
+PREP(createTerminal);
+PREP(getVehicleList);

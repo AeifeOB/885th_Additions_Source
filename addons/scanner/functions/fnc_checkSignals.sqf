@@ -1,5 +1,6 @@
 #include "script_component.hpp"
 
+if (!GVAR(isActive)) exitWith{};
 if (!GVAR(mainActive)) exitWith{};
 if (GVAR(jammable) && player call FUNC(isJammed)) exitWith {};
 

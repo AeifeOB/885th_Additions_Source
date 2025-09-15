@@ -13,14 +13,7 @@ if !(_hasCrows) exitWith {
 	diag_log "Crow's Electronic Warfare not found. It is required for Scanners.";
 };
 
-// server doesn't need dialogs
-if (isServer) then {
-};
-
-// if not a player we don't do anything
-if (!hasInterface) exitWith {}; 
 if (is3DEN) exitWith {};
-if (GVAR(isActive)) then {
-	call FUNC(createDialogs);
-	call FUNC(addAceActions);
-};
+
+call FUNC(createDialogs);
+call FUNC(addAceActions);

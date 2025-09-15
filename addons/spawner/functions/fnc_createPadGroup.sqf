@@ -43,17 +43,18 @@ if (_activated) then {
 	private _names = _logic getVariable ["Name",0];
 	private _offset = _logic getVariable ["PadOffset",0];
 	private _groupName = _logic getVariable ["GroupName",0];
+	
 	// Create group
-	_groupExists = [AIFE_spawner_padGroups, _groupName] call CBA_fnc_hashHasKey;
+	_groupExists = [GVAR(padGroups), _groupName] call CBA_fnc_hashHasKey;
 	if (!_groupExists) then {
 		[_groupName] call FUNC(addGroup);
 	};
 	// Parse Pad Names
-	_names = "["+_names+"]";
+	//_names = "["+_names+"]";
 	_padNames = parseSimpleArray _names;
 	// Create Pads with Offsets
 	{
-		if (_x call AIFE_spawner_fnc_findPadByObject != "") 
+		if (_x call FUNC(findPadByObject) != "") 
 		exitWith {
 			["This is already a pad"] remoteExec ["systemchat", 0, false];
 		};
@@ -62,7 +63,7 @@ if (_activated) then {
 			_name = "Pad";
 		};
 		
-		[_name, _offset, _x, _groupName] call AIFE_spawner_fnc_createPad;
+		[_name, _offset, _x, _groupName] call FUNC(createPad);
 	} forEach _objects;
 
 	
