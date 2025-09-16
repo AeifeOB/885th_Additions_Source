@@ -12,18 +12,18 @@ class EditorData
 	};
 	class ItemIDProvider
 	{
-		nextID=83;
+		nextID=84;
 	};
 	class Camera
 	{
-		pos[]={4107.458,23.014177,4096.2485};
-		dir[]={-0.77924573,-0.48618662,0.39547271};
-		up[]={-0.43354887,0.87385499,0.22002912};
-		aside[]={0.45256102,-1.4901161e-08,0.89173341};
+		pos[]={4097.603,23.014177,4114.4834};
+		dir[]={-0.11652553,-0.65619022,-0.74555135};
+		up[]={-0.1013292,0.75459421,-0.64832169};
+		aside[]={-0.98801106,2.1289452e-07,0.15442096};
 	};
 };
 binarizationWanted=0;
-sourceName="modtesting";
+sourceName="~modtesting";
 addons[]=
 {
 	"A3_Modules_F_Curator_Curator",
@@ -34,13 +34,15 @@ addons[]=
 	"A3_Props_F_Enoch_Military_Equipment",
 	"A3_Structures_F_Civ_Camping",
 	"ace_dragging",
-	"A3_Structures_F_Civ_InfoBoards"
+	"A3_Structures_F_Civ_InfoBoards",
+	"A3_Structures_F_Ind_Transmitter_Tower",
+	"cba_xeh"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=8;
+		items=9;
 		class Item0
 		{
 			className="A3_Modules_F_Curator";
@@ -96,6 +98,13 @@ class AddonsMetaData
 			name="ACE3 - Dragging";
 			author="ACE-Team";
 			url="https://ace3.acemod.org/";
+		};
+		class Item8
+		{
+			className="A3_Structures_F_Ind";
+			name="Arma 3 - Industrial Structures";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
 		};
 	};
 };
@@ -1676,7 +1685,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=16;
+		items=17;
 		class Item0
 		{
 			dataType="Logic";
@@ -2302,6 +2311,21 @@ class Mission
 			};
 			id=82;
 			type="Land_Noticeboard_F";
+		};
+		class Item16
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4095.9934,21.563423,4096.2314};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=83;
+			type="Land_Communication_F";
 		};
 	};
 	class Connections

@@ -20,6 +20,16 @@ _breakdown = {
 };
 [_groupHash, _breakdown] call CBA_fnc_hashEachPair;
 
+private _config = missionConfigFile >> "AIFE_Spawner_Presets";
+
+if (!isClass _config) then {
+	_config = configFile >> "AIFE_Spawner_Presets";
+};
+private _presets = [];
+{
+	_presets pushBack getText(_x >> "displayName");
+} forEach ("true" configClasses _config);
+
 ["Create Spawn Terminal", [
 		[
 			"EDIT", 
@@ -41,6 +51,16 @@ _breakdown = {
 		],
 		[
 			"LIST",
+			"Vehicle Preset",
+			[
+				_presets,
+				_presets,
+				0,
+				4
+			]
+		],
+		[
+			"LIST",
 			"Group",
 			[
 				_displayNames,
@@ -55,7 +75,8 @@ _breakdown = {
 
 		_dialogResult params[
 			"_name",
-			"_list",
+			"_vehicleList",
+			"_preset",
 			"_groupName"
 		];
 
@@ -65,13 +86,29 @@ _breakdown = {
 		if (_object == objNull) exitWith {hint "Must be placed on an Object";};
 
 		if ([GVAR(terminals), _name] call CBA_fnc_hashHasKey) then {
-			hint "Name is not unique.";
 			_number = ([GVAR(terminals)] call CBA_fnc_hashSize);
 			_name = format ["%1 %2", _name, _number];
+			systemChat format ["Name is not unique. Updated to %1", _name];
 		};
-		
-		_vehicleList = [_list] call FUNC(ParseVehicles);
+		// If there's text in the custom list
+		if (count _vehicleList > 2) then {
+			_vehicleList = parseSimpleArray _vehicleList;
+			_vehicleList = [_vehicleList] call FUNC(ParseVehicles);
+		};
 
+		// If there's no custom list vehicles, use the preset
+		if ([_vehicleList] call CBA_fnc_hashSize < 1) then {
+			_vehicleList = [_preset] call FUNC(getVehicleList);
+			
+			// Remove costs until budgets are added.
+			_newList = [];
+			{
+				_newList pushBack (_x select 0);			
+			} forEach _vehicleList;
+			_vehicleList = _newList;
+			
+			_vehicleList = [_vehicleList] call FUNC(ParseVehicles);
+		};
 		[GVAR(terminals), _name, [_object, _groupName, _vehicleList]] call CBA_fnc_hashSet;
 		publicVariable QGVAR(terminals);
 		[_object] remoteExec ["AIFE_spawner_fnc_AddTerminalActions", 0, true];

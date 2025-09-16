@@ -6,9 +6,14 @@ _trig setTriggerArea [10,10,0,true,10];
 
 
 _vehicles = vehicles inAreaArray _trig;
+// Ignore hidden Vehicles
 {
-	//TODO add vehicle inventory
+	if (isObjectHidden _x) then {
+		continue;
+	};
+	//TODO add vehicle to budget
 	deleteVehicle _x;
 } forEach _vehicles;
+
 deleteVehicle _trig;
 true;

@@ -2,7 +2,6 @@
 
 params["_padArray", "_vehicle", "_hasCrew", "_clear"];
 
-systemChat format ["Checking area."];
 private _pad = _padArray select 0;
 private _padOffset = _padArray select 1;
 

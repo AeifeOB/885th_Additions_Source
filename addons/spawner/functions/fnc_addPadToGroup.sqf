@@ -1,25 +1,32 @@
 #include "script_component.hpp"
-/*
-Pad List: 
-	padName => [groupDisplayName, object]
-Group List:
-	groupDisplayName => [padName => [_object, _offset]]
-Param:
-	_pad => [padName, [_object, _offset]]
-*/
-params ["_padName", "_padInfo", "_groupName"];
+/*//////////////////////////
+Add Pad to Group list
 
-// Get ALL Lists
-_padList = GVAR(pads);
+Params: 
+padName <STRING>
+offset <FLOAT>
+object <OBJECT>
+groupName <STRING>
+
+Returns: 
+Group Name<STRING>
+
+Example:
+["Pad 1", 1, <object>, "Group 1"] call AIFE_spawner_fnc_addPadToGroup;
+
+NOTES:
+	Pad Hash Layout:
+		padName => [groupDisplayName, object]
+	Group Hash Layout:
+		groupDisplayName => [padName => [_object, _offset]]
+//////////////////////////*/
+params ["_padName", "_offset", "_object", "_groupName"];
+
 _groupList = GVAR(padGroups);
 _group = [_groupList, _groupName] call CBA_fnc_hashGet;
 
-// Add _pad to both lists
-_padObject = _padInfo select 0;
+_padInfo = [_object, _offset];
 
-[_padList, _padName, [_groupName, _padObject]] call CBA_fnc_hashSet;
-GVAR(pads) = _padList;
-publicVariable QGVAR(pads);
 [_group, _padName, _padInfo] call CBA_fnc_hashSet;
 [_groupList, _groupName, _group] call CBA_fnc_hashSet;
 GVAR(padGroups) = _groupList;

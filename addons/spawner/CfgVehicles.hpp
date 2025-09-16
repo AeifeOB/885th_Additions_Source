@@ -25,7 +25,7 @@ class CfgVehicles
 		icon="\A3\ui_f\data\map\markers\nato\c_air.paa";
 		vehicleClass="Modules";
 		category="AIFE_modules";
-		function="AIFE_spawner_fnc_createPadGroup";
+		function="AIFE_spawner_fnc_ModuleCreatePadGroup";
 		functionPriority=1;
 		isGlobal=0;
 		isTriggerActivated=0;
@@ -93,7 +93,7 @@ class CfgVehicles
 				onlyForPlayer = 1;
 				position = "laptop_lid";
 				condition = "!([this] call AIFE_spawner_fnc_terminalExists)";
-				statement = "[getPosASL this, this] spawn AIFE_spawner_fnc_addTerminal;";
+				statement = "[getPosASL this, this] spawn AIFE_spawner_fnc_ZeusAddTerminal;";
 			};
 		};
 		ace_cargo_canLoad=0;
@@ -120,7 +120,7 @@ class CfgVehicles
 		displayName="Spawn Terminal";
 		icon="\A3\ui_f\data\map\markers\nato\respawn_plane_ca.paa";
 		vehicleClass="Modules";
-		function="AIFE_spawner_fnc_createTerminal";
+		function="AIFE_spawner_fnc_ModuleCreateTerminal";
 		class Attributes: AttributesBase 
 		{
 			class Units: Units{};

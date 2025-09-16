@@ -1,26 +1,32 @@
 PREP(SpawnerStart);
-PREP(ParseVehicles);
+
+// Spawning Utilities
 PREP(RequestVehicle);
 PREP(SpawnVehicle);
 PREP(StoreVehicle);
 PREP(CheckPad);
 PREP(ClearPad);
-PREP(AddPad);
-PREP(RemovePad);
-PREP(AddVehicle);
-PREP(updateVehicleList);
-PREP(addPadToGroup);
-PREP(createGroup);
-PREP(createPad);
-PREP(findPadByObject);
-PREP(addTerminal);
 PREP(AddTerminalActions);
-PREP(removeTerminal);
+
+PREP(addPad);
+PREP(addGroup);
+PREP(addPadToGroup);
+
+PREP(ParseVehicles);
+PREP(findPadByObject);
 PREP(findTerminal);
 PREP(terminalExists);
 PREP(getGroupListByPad);
-PREP(addGroup);
 PREP(assignTerminal);
-PREP(createPadGroup);
-PREP(createTerminal);
 PREP(getVehicleList);
+PREP(updateVehicleList);
+
+// Module Functions
+PREP(ModuleCreatePadGroup);
+PREP(ModuleCreateTerminal);
+// Zeus Functions
+PREP(ZeusAddPad);
+PREP(ZeusCreateGroup);
+PREP(ZeusRemovePad);
+PREP(ZeusAddTerminal);
+PREP(ZeusRemoveTerminal);

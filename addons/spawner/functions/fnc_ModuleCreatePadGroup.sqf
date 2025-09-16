@@ -49,9 +49,9 @@ if (_activated) then {
 	if (!_groupExists) then {
 		[_groupName] call FUNC(addGroup);
 	};
-	// Parse Pad Names
-	//_names = "["+_names+"]";
+	
 	_padNames = parseSimpleArray _names;
+
 	// Create Pads with Offsets
 	{
 		if (_x call FUNC(findPadByObject) != "") 
@@ -63,7 +63,8 @@ if (_activated) then {
 			_name = "Pad";
 		};
 		
-		[_name, _offset, _x, _groupName] call FUNC(createPad);
+		_name = [_name, _x, _groupName] call FUNC(addPad);
+		[_name, _offset, _x, _groupName] call FUNC(addPadToGroup);
 	} forEach _objects;
 
 	

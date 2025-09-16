@@ -3,10 +3,10 @@
 	Take terminal parameters and add them globally.
 
 	Arguments:
-	0: Object <object>
-	1: Name <string>
-	2: Group <string>
-	3: VehicleList <array>
+	object <object>
+	name <string>
+	group <string>
+	vehicleList <array>
 
 	Return Value:
 	Nil
@@ -23,12 +23,10 @@ if (_object == objNull) exitWith {
 };
 
 if ([GVAR(terminals), _name] call CBA_fnc_hashHasKey) then {
-	hint "Name is not unique.";
 	_number = ([GVAR(terminals)] call CBA_fnc_hashSize);
 	_name = format ["%1 %2", _name, _number];
+	systemChat format ["Name is not unique. Changed to %1", _name];
 };
-hint str _group;
-systemChat str _vehicleList;
 
 [GVAR(terminals), _name, [_object, _group, _vehicleList]] call CBA_fnc_hashSet;
 publicVariable QGVAR(terminals);

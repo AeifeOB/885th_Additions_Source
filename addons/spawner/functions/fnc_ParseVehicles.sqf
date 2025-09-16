@@ -3,23 +3,18 @@
 	Get list of vehicle classnames and display names as a list.
 
 	Arguments:
-	0: Text <string>
+	array <ARRAY>
 
 	Return Value:
 	Pairs of classnames and display names <ARRAY>
 
 	Example:
-	["class_1", "class_2"] call FUNC(ParseVehicles);
+	[["class_1", "class_2"]] call FUNC(ParseVehicles);
 	
 	TODO: Add Budgets
 */
-params ["_text"];
-private _array = [];
-if (typeName _text != "ARRAY") then {
-	_array = parseSimpleArray _text;
-} else {
-	_array = _text;
-};
+params ["_array"];
+
 _list = [] call CBA_fnc_hashCreate;
 {
 	_displayName = getText (configFile >> "CfgVehicles" >> _x >> "displayName");

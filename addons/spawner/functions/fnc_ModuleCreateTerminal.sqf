@@ -44,18 +44,25 @@ if (_activated) then {
 	private _name = _logic getVariable ["TerminalName",0];
 	private _group = _logic getVariable ["PadGroup",0];
 	private _preset = _logic getVariable ["Preset",0];
-	private _customList = _logic getVariable ["CustomList",0];
+	private _vehicleList = _logic getVariable ["CustomList",0];
+	
+	// If there's text in the custom list
+	if (count _vehicleList > 2) then {
+		_vehicleList = parseSimpleArray _vehicleList;
+		_vehicleList = [_vehicleList] call FUNC(ParseVehicles);
+	};
 
-	private _vehicleList = [_customList] call FUNC(ParseVehicles);
+	// If there's no custom list vehicles, use the preset
 	if ([_vehicleList] call CBA_fnc_hashSize < 1) then {
 		_vehicleList = [_preset] call FUNC(getVehicleList);
-		systemChat str _vehicleList;
+		
 		// Remove costs until budgets are added.
 		_newList = [];
 		{
 			_newList pushBack (_x select 0);			
 		} forEach _vehicleList;
 		_vehicleList = _newList;
+		
 		_vehicleList = [_vehicleList] call FUNC(ParseVehicles);
 	};
 	[_objects, _name, _group, _vehicleList] call FUNC(assignTerminal);
