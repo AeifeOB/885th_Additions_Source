@@ -1,4 +1,17 @@
 #include "script_component.hpp"
+/*
+Checks to see if a pad area is clear.
+TODO: Add settings for check area size.
+
+Params:
+pad <OBJECT>
+
+Returns:
+none
+
+Example:
+[<object>] call AIFE_spawner_fnc_CheckPad;
+*/
 params ["_pad"];
 
 _clear = true;

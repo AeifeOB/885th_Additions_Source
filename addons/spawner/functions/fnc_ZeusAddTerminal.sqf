@@ -1,5 +1,17 @@
 #include "script_component.hpp"
+/*
+Create a terminal on an object via zeus module.
 
+Params:
+position <ARRAY>
+object <OBJECT>
+
+Returns:
+none
+
+Example:
+[[0,0,0], <object>] call AIFE_spawner_fnc_ZeusAddTerminal;
+*/
 params ["_position", "_object"];
 
 if (_object == objNull) exitWith {

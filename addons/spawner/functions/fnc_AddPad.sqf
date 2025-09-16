@@ -37,4 +37,9 @@ if (_nameExists) then {
 GVAR(pads) = _padList;
 publicVariable QGVAR(pads);
 
+_object addEventHandler ["Deleted", {
+	params ["_entity"];
+	[getPos _entity, _entity] call FUNC(ZeusRemovePad);
+}];
+
 _name;

@@ -1,4 +1,17 @@
 #include "script_component.hpp"
+/*
+Remove Vehicles on a pad.
+TODO: Add vehicle worth to the budget. Non-list vehicles give based on mass.
+
+Params:
+pad <OBJECT>
+
+Returns:
+none
+
+Example:
+[<object>] call AIFE_spawner_fnc_ClearPad;
+*/
 params["_pad"];
 
 _trig = createTrigger ["EmptyDetector", getPos _pad];
