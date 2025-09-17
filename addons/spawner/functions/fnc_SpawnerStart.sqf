@@ -23,11 +23,10 @@ GVAR(vehicleList) = [] call CBA_fnc_hashCreate;
 	false
 ] call CBA_fnc_addSetting;
 
-["[Aife] Vehicle Spawner", "Add Pad", {_this call FUNC(AddPad);}] call zen_custom_modules_fnc_register;
-["[Aife] Vehicle Spawner", "Remove Pad", {_this call FUNC(RemovePad);}] call zen_custom_modules_fnc_register;
-["[Aife] Vehicle Spawner", "Add Terminal", {_this call FUNC(addTerminal);}] call zen_custom_modules_fnc_register;
-["[Aife] Vehicle Spawner", "Remove Terminal", {_this call FUNC(removeTerminal);}] call zen_custom_modules_fnc_register;
-
+["[Aife] Vehicle Spawner", "Add Pad", {_this call FUNC(ZeusAddPad);}] call zen_custom_modules_fnc_register;
+["[Aife] Vehicle Spawner", "Remove Pad", {_this call FUNC(ZeusRemovePad);}] call zen_custom_modules_fnc_register;
+["[Aife] Vehicle Spawner", "Add Terminal", {_this call FUNC(ZeusAddTerminal);}] call zen_custom_modules_fnc_register;
+["[Aife] Vehicle Spawner", "Remove Terminal", {_this call FUNC(ZeusRemoveTerminal);}] call zen_custom_modules_fnc_register;
 
 if (hasInterface) then {
 	player addEventHandler ["Respawn", {

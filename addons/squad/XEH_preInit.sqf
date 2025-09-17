@@ -11,8 +11,6 @@ if !(_hasZen) exitWith
 	diag_log "******CBA and/or ZEN not detected. They are required.";
 };
 
-if (isServer) then {};
-
 // Visual Settings
 GVAR(icon) = "z\AIFE\addons\squad\textures\MemberIcon.paa";
 [

@@ -15,6 +15,14 @@ class CfgPatches
 		weapons[] = {};
 	};
 };
+class CfgFactionClasses
+{
+	class NO_CATEGORY;
+	class AIFE_modules: NO_CATEGORY
+	{
+		displayName="Aife's Modules";
+	};
+};
 class CfgEditorCategories
 {
 	class AifeLogistics 
@@ -29,56 +37,7 @@ class CfgEditorSubcategories
 		displayName = "Vehicle Spawner";
 	};
 };
-class CfgVehicles
-{
-	class RuggedTerminal_01_communications_F;
-	class AIFE_VehicleTerminal : RuggedTerminal_01_communications_F 
-	{
-		class UserActions
-		{
-			class Spawner_Initiate 
-			{
-				userActionID = 51;
-				displayName = "Initialize Spawner";
-				radius = 5;
-				priority = 1;
-				onlyForPlayer = 1;
-				position = "laptop_lid";
-				condition = "!([this] call AIFE_spawner_fnc_terminalExists)";
-				statement = "[getPosASL this, this] spawn AIFE_spawner_fnc_addTerminal;";
-			};
-			/*class Spawner_Request 
-			{
-				userActionID = 52;
-				displayName = "Request Vehicle";
-				radius = 5;
-				priority = 1;
-				onlyForPlayer = 1;
-				position = "laptop_lid";
-				condition = "([this] call AIFE_spawner_fnc_terminalExists)";
-				statement = "[this] spawn AIFE_spawner_fnc_RequestVehicle;";
-			};
-			class Spawner_Store 
-			{
-				userActionID = 53;
-				displayName = "Store Vehicle";
-				radius = 5;
-				priority = 1;
-				onlyForPlayer = 1;
-				position = "laptop_lid";
-				condition = "([this] call AIFE_spawner_fnc_terminalExists)";
-				statement = "[this] spawn AIFE_spawner_fnc_StoreVehicle;";
-			};*/
-		};
-		ace_cargo_canLoad=0;
-		ace_cargo_size=10;
-		ace_dragging_canCarry=0;
-		ace_dragging_canDrag=0;
-		scope=2;
-		scopeCurator=2;
-		editorCategory="AifeLogistics";
-		editorSubCategory="SubSpawner";
-		displayName="Vehicle Spawn Terminal";
-	};
-};
+#include "Cfg3DEN.hpp"
+#include "AIFE_Spawner_Presets.hpp"
+#include "CfgVehicles.hpp"
 #include "CfgEventhandlers.hpp"

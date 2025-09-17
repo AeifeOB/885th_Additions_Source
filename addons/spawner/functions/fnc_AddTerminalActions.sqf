@@ -1,5 +1,17 @@
 #include "script_component.hpp"
+/*
+Add Actions to the Terminal after it's created
+(also adds the deleted EH)
 
+Params:
+object <OBJECT>
+
+Returns:
+none
+
+Example:
+[_object] call AIFE_spawner_fnc_AddTerminalActions;
+*/
 params ["_object"];
 
 _object addAction
@@ -39,3 +51,8 @@ _object addAction
 	"",			// selection
 	""			// memoryPoint
 ];
+
+_object addEventHandler ["Deleted", {
+	params ["_entity"];
+	[getPos _entity, _entity] call FUNC(ZeusRemoveTerminal);
+}];

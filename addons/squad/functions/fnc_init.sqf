@@ -3,7 +3,10 @@
 GVAR(icon_drawEH) = addMissionEventHandler [
 	"Draw3D", 
 	{
-		if (GVAR(jammable) && player call FUNC(isJammed)) then {
+		if (
+			!GVAR(isActive) || 
+			(GVAR(jammable) && player call FUNC(isJammed))
+		) then {
 			continue;
 		} else {
 			{

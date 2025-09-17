@@ -12,14 +12,14 @@ class EditorData
 	};
 	class ItemIDProvider
 	{
-		nextID=72;
+		nextID=83;
 	};
 	class Camera
 	{
-		pos[]={4104.9629,25.738134,4062.533};
-		dir[]={-0.19210491,-0.39635739,0.89777321};
-		up[]={-0.082934871,0.9180963,0.38758358};
-		aside[]={0.97786385,0,0.20924264};
+		pos[]={4107.458,23.014177,4096.2485};
+		dir[]={-0.77924573,-0.48618662,0.39547271};
+		up[]={-0.43354887,0.87385499,0.22002912};
+		aside[]={0.45256102,-1.4901161e-08,0.89173341};
 	};
 };
 binarizationWanted=0;
@@ -30,13 +30,17 @@ addons[]=
 	"A3_Modules_F_Multiplayer",
 	"A3_Characters_F",
 	"A3_Structures_F_Mil_Helipads",
-	"AIFE_em"
+	"aife_spawner",
+	"A3_Props_F_Enoch_Military_Equipment",
+	"A3_Structures_F_Civ_Camping",
+	"ace_dragging",
+	"A3_Structures_F_Civ_InfoBoards"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=5;
+		items=8;
 		class Item0
 		{
 			className="A3_Modules_F_Curator";
@@ -67,10 +71,31 @@ class AddonsMetaData
 		};
 		class Item4
 		{
-			className="AIFE_em";
-			name="Aife's Editor Modules";
+			className="AIFE_spawner";
+			name="Vehicle Spawner";
 			author="AifeSupport";
 			url="https://github.com/AeifeOB/885th_Additions_Source";
+		};
+		class Item5
+		{
+			className="A3_Props_F_Enoch";
+			name="Arma 3 Contact Platform - Decorative and Mission Objects";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item6
+		{
+			className="A3_Structures_F";
+			name="Arma 3 - Buildings and Structures";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item7
+		{
+			className="ace_dragging";
+			name="ACE3 - Dragging";
+			author="ACE-Team";
+			url="https://ace3.acemod.org/";
 		};
 	};
 };
@@ -82,6 +107,10 @@ class DynamicSimulation
 		Vehicle=3000;
 		Group=3000;
 	};
+};
+dlcs[]=
+{
+	"Enoch"
 };
 randomSeed=33428;
 class ScenarioData
@@ -1647,7 +1676,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=10;
+		items=16;
 		class Item0
 		{
 			dataType="Logic";
@@ -1995,28 +2024,107 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={4101.0449,5,4106.9512};
+				position[]={4098.0688,5,4110.3008};
 			};
-			id=71;
-			type="AIFE_em_modulePads";
+			id=72;
+			type="AIFE_spawner_terminalModule";
 			class CustomAttributes
 			{
 				class Attribute0
 				{
-					property="AIFE_em_addPad_name";
+					property="AIFE_spawner_terminalModule_Preset";
+					expression="_this setVariable ['Preset',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="vanilla";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="AIFE_spawner_terminalModule_Group";
+					expression="_this setVariable ['PadGroup',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="Group";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="AIFE_spawner_terminalModule_CustomList";
+					expression="_this setVariable ['CustomList',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="[]";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="AIFE_spawner_terminalModule_Name";
+					expression="_this setVariable ['TerminalName',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="Terminal";
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
+		class Item10
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={4095.7129,5,4113.9438};
+			};
+			id=73;
+			type="AIFE_spawner_modulePads";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="AIFE_spawner_addPad_name";
 					expression="_this setVariable ['Name',_value,true];";
 					class Value
 					{
 						class data
 						{
 							singleType="STRING";
-							value="""Pad""";
+							value="[]";
 						};
 					};
 				};
 				class Attribute1
 				{
-					property="AIFE_em_addPad_offset";
+					property="AIFE_spawner_addPad_groupName";
+					expression="_this setVariable ['GroupName',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="Group";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="AIFE_spawner_addPad_offset";
 					expression="_this setVariable ['PadOffset',_value,true];";
 					class Value
 					{
@@ -2027,32 +2135,184 @@ class Mission
 						};
 					};
 				};
+				nAttributes=3;
+			};
+		};
+		class Item11
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={4097.7261,5,4104.8018};
+			};
+			id=78;
+			type="AIFE_spawner_terminalModule";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="AIFE_spawner_terminalModule_Preset";
+					expression="_this setVariable ['Preset',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="vanilla";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="AIFE_spawner_terminalModule_Group";
+					expression="_this setVariable ['PadGroup',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="Group 2";
+						};
+					};
+				};
 				class Attribute2
 				{
-					property="AIFE_em_addPad_groupName";
+					property="AIFE_spawner_terminalModule_CustomList";
+					expression="_this setVariable ['CustomList',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="[""B_APC_Tracked_01_AA_F"",""B_APC_Wheeled_01_cannon_F"",""B_MRAP_01_F""]";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="AIFE_spawner_terminalModule_Name";
+					expression="_this setVariable ['TerminalName',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="Terminal 2";
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
+		class Item12
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={4097.4141,5,4100.1279};
+			};
+			id=79;
+			type="AIFE_spawner_modulePads";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="AIFE_spawner_addPad_name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="[""Left"",""Middle"",""Right""]";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="AIFE_spawner_addPad_groupName";
 					expression="_this setVariable ['GroupName',_value,true];";
 					class Value
 					{
 						class data
 						{
 							singleType="STRING";
-							value="First Group";
+							value="Group 2";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="AIFE_spawner_addPad_offset";
+					expression="_this setVariable ['PadOffset',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
 						};
 					};
 				};
 				nAttributes=3;
 			};
 		};
+		class Item13
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4097.8208,6.0656829,4104.958};
+				angles[]={0,3.1654174,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=80;
+			type="Land_MultiScreenComputer_01_black_F";
+		};
+		class Item14
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4097.8633,5.411552,4104.873};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=81;
+			type="Land_CampingTable_F";
+		};
+		class Item15
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4093.0527,5.7914262,4109.436};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=82;
+			type="Land_Noticeboard_F";
+		};
 	};
 	class Connections
 	{
 		class LinkIDProvider
 		{
-			nextID=7;
+			nextID=8;
 		};
 		class Links
 		{
-			items=7;
+			items=8;
 			class Item0
 			{
 				linkID=0;
@@ -2067,7 +2327,7 @@ class Mission
 			{
 				linkID=1;
 				item0=21;
-				item1=71;
+				item1=73;
 				class CustomData
 				{
 					type="Sync";
@@ -2077,7 +2337,7 @@ class Mission
 			{
 				linkID=2;
 				item0=20;
-				item1=71;
+				item1=73;
 				class CustomData
 				{
 					type="Sync";
@@ -2087,7 +2347,7 @@ class Mission
 			{
 				linkID=3;
 				item0=22;
-				item1=71;
+				item1=73;
 				class CustomData
 				{
 					type="Sync";
@@ -2097,7 +2357,7 @@ class Mission
 			{
 				linkID=4;
 				item0=23;
-				item1=71;
+				item1=79;
 				class CustomData
 				{
 					type="Sync";
@@ -2107,7 +2367,7 @@ class Mission
 			{
 				linkID=5;
 				item0=24;
-				item1=71;
+				item1=79;
 				class CustomData
 				{
 					type="Sync";
@@ -2117,7 +2377,17 @@ class Mission
 			{
 				linkID=6;
 				item0=25;
-				item1=71;
+				item1=79;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item7
+			{
+				linkID=7;
+				item0=78;
+				item1=80;
 				class CustomData
 				{
 					type="Sync";

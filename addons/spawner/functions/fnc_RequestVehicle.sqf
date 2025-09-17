@@ -17,8 +17,9 @@ _groupName = _terminal select 1;
 _vehicleList = _terminal select 2;
 
 _pads = [GVAR(padGroups), _groupName] call CBA_fnc_hashGet;
+_count = [_pads] call CBA_fnc_hashSize;
 
-if (count _pads == 0) exitWith {
+if (_count == 0) exitWith {
 	systemChat "Add a pad to continue.";
 };
 

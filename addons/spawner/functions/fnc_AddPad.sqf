@@ -1,53 +1,45 @@
 #include "script_component.hpp"
+/*//////////////////////////
+Check that name is unique, then add it to pad list.
 
-params ["_position","_object"];
-_displayNames = [];
-_lists = [];
-_breakdown = {
-	_displayNames pushBack _key;
+Params: 
+padName <STRING>
+object <OBJECT>
+groupName <STRING>
+
+Returns: 
+Group Name<STRING>
+
+Example:
+["Pad 1", 1, <object>, "Group 1"] call AIFE_spawner_fnc_addPad;
+
+Returns:
+name <STRING> after updat
+NOTES:
+	Pad Hash Layout:
+		padName => [groupDisplayName, object]
+	Group Hash Layout:
+		groupDisplayName => [padName => [_object, _offset]]
+//////////////////////////*/
+
+params["_name", "_object", "_groupName"];
+
+_padList = GVAR(pads);
+_nameExists = [_padList, _name] call CBA_fnc_hashHasKey;
+
+if (_nameExists) then {
+	_number = netId _object;
+	_name = format ["%1 %2", _name, _number];
+	systemChat format ["Name is not unique. Changed to %1", _name];
 };
-[GVAR(padGroups), _breakdown] call CBA_fnc_hashEachPair;
-_displayNames pushBack "CreateNewGroup";
-["Create Pad", [
-		[
-			"EDIT", 
-			"Display Name",
-			[
-				"Pad", 
-				{},
-				1
-			]
-		],
-		["SLIDER", "Z-Offset", [-5.0, 5.0, 1.0, 1]],
-		[
-			"LIST",
-			"Group",
-			[
-				_displayNames,
-				_displayNames
-			]
-		]
-	],
-	{
-		params ["_dialogResult","_in"];
-		_dialogResult params[
-			"_name",
-			"_offset",
-			"_groupName"
-		];
-		_in params [
-			"_position",
-			"_object"
-		];
-		if (_object == objNull) exitWith {hint "Must be placed on an Object";};
-		if ([_object] call FUNC(findPadByObject) != "") exitWith {hint "This is already a pad"};
-		
-		if (_groupName != "CreateNewGroup") then {
-			_group = [GVAR(padGroups), _groupName] call CBA_fnc_hashGet;
-			[_name, _offset, _object, _groupName] call FUNC(createPad);
-		} else {
-			[_name, _offset, _object] call FUNC(createGroup);
-		};
-		
-	}, {}, [_position, _object]
-] call zen_dialog_fnc_create;
+
+[_padList, _name, [_groupName, _object]] call CBA_fnc_hashSet;
+GVAR(pads) = _padList;
+publicVariable QGVAR(pads);
+
+_object addEventHandler ["Deleted", {
+	params ["_entity"];
+	[getPos _entity, _entity] call FUNC(ZeusRemovePad);
+}];
+
+_name;
