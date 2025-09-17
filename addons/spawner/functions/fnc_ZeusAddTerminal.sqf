@@ -37,9 +37,11 @@ private _config = missionConfigFile >> "AIFE_Spawner_Presets";
 if (!isClass _config) then {
 	_config = configFile >> "AIFE_Spawner_Presets";
 };
-private _presets = [];
+private _presetDisplay = [];
+private _presetValue = [];
 {
-	_presets pushBack getText(_x >> "displayName");
+	_presetDisplay pushBack getText(_x >> "displayName");
+	_presetValue pushBack configName _x;
 } forEach ("true" configClasses _config);
 
 ["Create Spawn Terminal", [
@@ -65,8 +67,8 @@ private _presets = [];
 			"LIST",
 			"Vehicle Preset",
 			[
-				_presets,
-				_presets,
+				_presetValue,
+				_presetDisplay,
 				0,
 				4
 			]

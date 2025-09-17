@@ -11,7 +11,8 @@ class AIFE_Spawner_Presets {
 		displayName = "Vanilla";
 		objects[] = {
 			{"B_APC_Wheeled_01_cannon_F", 0},
-			{"B_Heli_Transport_03_F", 0}
+			{"B_Heli_Light_01_dynamicLoadout_F", 0},
+			{"B_Heli_Transport_01_F", 0}
 		};
 	};
 };
