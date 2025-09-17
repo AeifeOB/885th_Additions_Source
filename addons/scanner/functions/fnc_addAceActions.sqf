@@ -74,7 +74,7 @@ _parentAction = [
 	"Sensors", 
 	"", 
 	GVAR(frequencyDialog), 
-	{true},
+	{GVAR(isActive)},
 	_insertChildren
 ] call ace_interact_menu_fnc_createAction;
 

@@ -13,6 +13,6 @@ if !(_hasCrows) exitWith {
 	diag_log "Crow's Electronic Warfare not found. It is required.";
 };
 
-if (!isServer) then {
+if (hasInterface) then {
 	call FUNC(init);
 };

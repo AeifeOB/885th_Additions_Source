@@ -14,6 +14,7 @@ if !(_hasCrows) exitWith {
 };
 
 if (is3DEN) exitWith {};
-
-call FUNC(createDialogs);
-call FUNC(addAceActions);
+if (hasInterface) then {
+	call FUNC(createDialogs);
+	call FUNC(addAceActions);
+};
