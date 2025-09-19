@@ -5,17 +5,20 @@ TODO: Add vehicle worth to the budget. Non-list vehicles give based on mass.
 
 Params:
 pad <OBJECT>
+offset <FLOAT>
 
 Returns:
 none
 
 Example:
-[<object>] call AIFE_spawner_fnc_ClearPad;
+[<object>, 5.0] call AIFE_spawner_fnc_ClearPad;
 */
-params["_pad"];
+params["_pad", "_offset"];
 
-_trig = createTrigger ["EmptyDetector", getPos _pad];
-_trig setTriggerArea [10,10,0,true,10];
+_position = getPosASL _pad;
+_position set [2, (getPosASL _pad select 2) + _offset];
+_trig = createTrigger ["EmptyDetector", _position];
+_trig setTriggerArea [10,10,0,true,20];
 
 
 _vehicles = vehicles inAreaArray _trig;
