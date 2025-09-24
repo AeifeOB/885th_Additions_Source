@@ -27,7 +27,8 @@ if (count _pads == 0) exitWith {
 		_values = _this select 0;
 
 		_pad = (_values select 0) select 0;
+		_padOffset = (_values select 0) select 1;
 
-		[_pad] spawn FUNC(ClearPad);
+		[_pad, _padOffset] spawn FUNC(ClearPad);
 	}
 ] call zen_dialog_fnc_create;
