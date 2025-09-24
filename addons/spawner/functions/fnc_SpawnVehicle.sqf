@@ -13,6 +13,7 @@ if ([_pad, _padOffset] call FUNC(CheckPad)) then {
 	_vehicleSpawned = _vehicle createVehicle getPosASL _pad;
 	_position = getPosASL _pad;
 	_position set [2, (getPosASL _pad select 2) + _padOffset];
+	_vehicleSpawned setDir (getDir _pad);
 	_vehicleSpawned setPosASL _position;
 	if (_hasCrew) then {
 		createVehicleCrew _vehicleSpawned;
