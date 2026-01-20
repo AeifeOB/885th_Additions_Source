@@ -7,7 +7,10 @@ mainprefix = "z"
 [files]
 include = [
   "mod.cpp",
+  "*.paa",
   "./files",
+  "./files/icon.paa",
+  "./files/iconSmall.paa",
   "./include",
   "LICENSE",
   "README.md",
